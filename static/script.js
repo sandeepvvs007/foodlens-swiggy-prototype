@@ -147,7 +147,7 @@ function renderPieChart(selector, items) {
     </div>
     <div>
       <div class="pie-legend">${legend}</div>
-      ${hasMacroUnit ? `<p class="chart-note">Macro split is estimated from dish names and should not be treated as verified nutrition data.</p>` : ""}
+      ${hasMacroUnit ? `<p class="chart-note">Nutrition split is estimated from dish names and should not be treated as verified nutrition data.</p>` : ""}
     </div>
   `;
 }

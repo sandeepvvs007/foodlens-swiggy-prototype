@@ -48,30 +48,30 @@ def _classify_items(items: list[str]) -> set[str]:
 def _estimate_item_macros(item: str) -> dict[str, int]:
     text = item.lower()
     if "biryani" in text:
-        return {"Protein": 25, "Carbs": 78, "Fats": 24}
+        return {"Protein": 25, "Carbs": 78, "Fats": 24, "Fiber": 4, "Sugar": 5}
     if "raita" in text:
-        return {"Protein": 4, "Carbs": 6, "Fats": 4}
+        return {"Protein": 4, "Carbs": 6, "Fats": 4, "Fiber": 0, "Sugar": 4}
     if "meal" in text:
-        return {"Protein": 20, "Carbs": 82, "Fats": 18}
+        return {"Protein": 20, "Carbs": 82, "Fats": 18, "Fiber": 8, "Sugar": 6}
     if "coffee" in text or "latte" in text:
-        return {"Protein": 4, "Carbs": 18, "Fats": 6}
+        return {"Protein": 4, "Carbs": 18, "Fats": 6, "Fiber": 0, "Sugar": 16}
     if "muffin" in text:
-        return {"Protein": 5, "Carbs": 48, "Fats": 18}
+        return {"Protein": 5, "Carbs": 48, "Fats": 18, "Fiber": 2, "Sugar": 26}
     if "kebab" in text or "wrap" in text:
-        return {"Protein": 27, "Carbs": 48, "Fats": 22}
+        return {"Protein": 27, "Carbs": 48, "Fats": 22, "Fiber": 4, "Sugar": 5}
     if "burger" in text:
-        return {"Protein": 28, "Carbs": 45, "Fats": 28}
+        return {"Protein": 28, "Carbs": 45, "Fats": 28, "Fiber": 4, "Sugar": 7}
     if "fries" in text:
-        return {"Protein": 5, "Carbs": 48, "Fats": 22}
+        return {"Protein": 5, "Carbs": 48, "Fats": 22, "Fiber": 5, "Sugar": 1}
     if "ice cream" in text or "chocolate" in text:
-        return {"Protein": 5, "Carbs": 38, "Fats": 16}
+        return {"Protein": 5, "Carbs": 38, "Fats": 16, "Fiber": 1, "Sugar": 32}
     if "rice bowl" in text:
-        return {"Protein": 24, "Carbs": 68, "Fats": 18}
+        return {"Protein": 24, "Carbs": 68, "Fats": 18, "Fiber": 7, "Sugar": 6}
     if "protein" in text or "paneer" in text:
-        return {"Protein": 34, "Carbs": 52, "Fats": 22}
+        return {"Protein": 34, "Carbs": 52, "Fats": 22, "Fiber": 6, "Sugar": 5}
     if "coke" in text or "soda" in text:
-        return {"Protein": 0, "Carbs": 35, "Fats": 0}
-    return {"Protein": 12, "Carbs": 45, "Fats": 14}
+        return {"Protein": 0, "Carbs": 35, "Fats": 0, "Fiber": 0, "Sugar": 35}
+    return {"Protein": 12, "Carbs": 45, "Fats": 14, "Fiber": 4, "Sugar": 8}
 
 
 def _empty_response(period_days: int | None, monthly_budget: int) -> dict:
@@ -322,7 +322,7 @@ def analyze_orders(
         "top_cuisines": _top(cuisine_counter),
         "macro_breakdown": [
             {"name": macro, "count": macro_totals[macro], "unit": "g"}
-            for macro in ["Protein", "Carbs", "Fats"]
+            for macro in ["Protein", "Carbs", "Fats", "Fiber", "Sugar"]
         ],
         "time_buckets": _top(time_counter, 6),
         "hourly_breakdown": _ordered_counts(
