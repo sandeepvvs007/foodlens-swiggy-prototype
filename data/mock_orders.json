@@ -1,0 +1,372 @@
+[
+  {
+    "order_id": "SWG-0901",
+    "ordered_at": "2025-11-08T20:18:00",
+    "restaurant": "Nandhana Palace",
+    "cuisine": "Andhra",
+    "items": ["Andhra Chicken Meal"],
+    "amount": 352,
+    "delivery_fee": 32,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0902",
+    "ordered_at": "2025-11-16T21:34:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani", "Raita"],
+    "amount": 421,
+    "delivery_fee": 39,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0903",
+    "ordered_at": "2025-11-28T13:05:00",
+    "restaurant": "A2B",
+    "cuisine": "South Indian",
+    "items": ["South Indian Meals"],
+    "amount": 238,
+    "delivery_fee": 25,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0904",
+    "ordered_at": "2025-12-03T22:45:00",
+    "restaurant": "NIC Ice Creams",
+    "cuisine": "Desserts",
+    "items": ["Belgian Chocolate Ice Cream"],
+    "amount": 249,
+    "delivery_fee": 30,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0905",
+    "ordered_at": "2025-12-10T20:12:00",
+    "restaurant": "Truffles",
+    "cuisine": "Continental",
+    "items": ["Classic Chicken Burger", "Fries"],
+    "amount": 529,
+    "delivery_fee": 48,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0906",
+    "ordered_at": "2025-12-18T09:28:00",
+    "restaurant": "Third Wave Coffee",
+    "cuisine": "Cafe",
+    "items": ["Iced Latte", "Banana Walnut Muffin"],
+    "amount": 438,
+    "delivery_fee": 41,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0907",
+    "ordered_at": "2025-12-27T21:16:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani"],
+    "amount": 394,
+    "delivery_fee": 34,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0908",
+    "ordered_at": "2026-01-04T20:58:00",
+    "restaurant": "Leon Grill",
+    "cuisine": "Fast Food",
+    "items": ["Peri Peri Chicken Wrap", "Coke"],
+    "amount": 471,
+    "delivery_fee": 42,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0909",
+    "ordered_at": "2026-01-09T13:22:00",
+    "restaurant": "California Burrito",
+    "cuisine": "Mexican",
+    "items": ["Barbecue Paneer Rice Bowl"],
+    "amount": 342,
+    "delivery_fee": 31,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0910",
+    "ordered_at": "2026-01-15T20:36:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani", "Raita"],
+    "amount": 428,
+    "delivery_fee": 38,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0911",
+    "ordered_at": "2026-01-22T21:48:00",
+    "restaurant": "Polar Bear",
+    "cuisine": "Desserts",
+    "items": ["Death By Chocolate"],
+    "amount": 306,
+    "delivery_fee": 31,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0912",
+    "ordered_at": "2026-01-30T19:44:00",
+    "restaurant": "EatFit",
+    "cuisine": "Healthy",
+    "items": ["High Protein Paneer Bowl"],
+    "amount": 329,
+    "delivery_fee": 29,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0913",
+    "ordered_at": "2026-02-06T20:05:00",
+    "restaurant": "Empire Restaurant",
+    "cuisine": "North Indian",
+    "items": ["Chicken Kebab Roll", "Lime Soda"],
+    "amount": 371,
+    "delivery_fee": 35,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0914",
+    "ordered_at": "2026-02-11T13:56:00",
+    "restaurant": "A2B",
+    "cuisine": "South Indian",
+    "items": ["Mini Meals", "Filter Coffee"],
+    "amount": 252,
+    "delivery_fee": 25,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0915",
+    "ordered_at": "2026-02-18T21:10:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Paneer Biryani", "Raita"],
+    "amount": 409,
+    "delivery_fee": 34,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0916",
+    "ordered_at": "2026-02-24T23:08:00",
+    "restaurant": "NIC Ice Creams",
+    "cuisine": "Desserts",
+    "items": ["Tender Coconut Ice Cream"],
+    "amount": 221,
+    "delivery_fee": 30,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0917",
+    "ordered_at": "2026-03-02T20:24:00",
+    "restaurant": "Nandhana Palace",
+    "cuisine": "Andhra",
+    "items": ["Andhra Chicken Meal"],
+    "amount": 372,
+    "delivery_fee": 34,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0918",
+    "ordered_at": "2026-03-07T14:12:00",
+    "restaurant": "Truffles",
+    "cuisine": "Continental",
+    "items": ["Classic Chicken Burger", "Fries"],
+    "amount": 518,
+    "delivery_fee": 47,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0919",
+    "ordered_at": "2026-03-13T20:47:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani"],
+    "amount": 397,
+    "delivery_fee": 34,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0920",
+    "ordered_at": "2026-03-18T09:02:00",
+    "restaurant": "Third Wave Coffee",
+    "cuisine": "Cafe",
+    "items": ["Iced Latte", "Banana Walnut Muffin"],
+    "amount": 445,
+    "delivery_fee": 42,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0921",
+    "ordered_at": "2026-03-23T19:51:00",
+    "restaurant": "EatFit",
+    "cuisine": "Healthy",
+    "items": ["High Protein Paneer Bowl"],
+    "amount": 331,
+    "delivery_fee": 28,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-0922",
+    "ordered_at": "2026-03-29T21:38:00",
+    "restaurant": "Leon Grill",
+    "cuisine": "Fast Food",
+    "items": ["Peri Peri Chicken Wrap", "Coke"],
+    "amount": 468,
+    "delivery_fee": 41,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1001",
+    "ordered_at": "2026-04-02T20:42:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani", "Raita"],
+    "amount": 428,
+    "delivery_fee": 39,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1002",
+    "ordered_at": "2026-04-04T13:18:00",
+    "restaurant": "A2B",
+    "cuisine": "South Indian",
+    "items": ["Mini Meals", "Filter Coffee"],
+    "amount": 246,
+    "delivery_fee": 24,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1003",
+    "ordered_at": "2026-04-06T21:07:00",
+    "restaurant": "Empire Restaurant",
+    "cuisine": "North Indian",
+    "items": ["Chicken Kebab Roll", "Lime Soda"],
+    "amount": 364,
+    "delivery_fee": 35,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1004",
+    "ordered_at": "2026-04-08T22:16:00",
+    "restaurant": "Polar Bear",
+    "cuisine": "Desserts",
+    "items": ["Death By Chocolate"],
+    "amount": 302,
+    "delivery_fee": 31,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1005",
+    "ordered_at": "2026-04-10T20:31:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani"],
+    "amount": 389,
+    "delivery_fee": 29,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1006",
+    "ordered_at": "2026-04-12T09:14:00",
+    "restaurant": "Third Wave Coffee",
+    "cuisine": "Cafe",
+    "items": ["Iced Latte", "Banana Walnut Muffin"],
+    "amount": 441,
+    "delivery_fee": 42,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1007",
+    "ordered_at": "2026-04-13T14:03:00",
+    "restaurant": "Truffles",
+    "cuisine": "Continental",
+    "items": ["Classic Chicken Burger", "Fries"],
+    "amount": 512,
+    "delivery_fee": 46,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1008",
+    "ordered_at": "2026-04-15T21:54:00",
+    "restaurant": "Nandhana Palace",
+    "cuisine": "Andhra",
+    "items": ["Andhra Chicken Meal"],
+    "amount": 368,
+    "delivery_fee": 33,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1009",
+    "ordered_at": "2026-04-17T20:09:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Paneer Biryani", "Raita"],
+    "amount": 407,
+    "delivery_fee": 34,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1010",
+    "ordered_at": "2026-04-19T23:22:00",
+    "restaurant": "NIC Ice Creams",
+    "cuisine": "Desserts",
+    "items": ["Tender Coconut Ice Cream"],
+    "amount": 219,
+    "delivery_fee": 29,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1011",
+    "ordered_at": "2026-04-21T13:41:00",
+    "restaurant": "California Burrito",
+    "cuisine": "Mexican",
+    "items": ["Barbecue Paneer Rice Bowl"],
+    "amount": 339,
+    "delivery_fee": 31,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1012",
+    "ordered_at": "2026-04-23T20:52:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani", "Raita"],
+    "amount": 431,
+    "delivery_fee": 39,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1013",
+    "ordered_at": "2026-04-25T21:19:00",
+    "restaurant": "EatFit",
+    "cuisine": "Healthy",
+    "items": ["High Protein Paneer Bowl"],
+    "amount": 327,
+    "delivery_fee": 28,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1014",
+    "ordered_at": "2026-04-27T19:58:00",
+    "restaurant": "Leon Grill",
+    "cuisine": "Fast Food",
+    "items": ["Peri Peri Chicken Wrap", "Coke"],
+    "amount": 466,
+    "delivery_fee": 41,
+    "city": "Bengaluru"
+  },
+  {
+    "order_id": "SWG-1015",
+    "ordered_at": "2026-04-29T20:26:00",
+    "restaurant": "Meghana Foods",
+    "cuisine": "Biryani",
+    "items": ["Chicken Biryani"],
+    "amount": 392,
+    "delivery_fee": 32,
+    "city": "Bengaluru"
+  }
+]

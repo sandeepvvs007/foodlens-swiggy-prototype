@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FoodLens</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Swiggy MCP prototype</p>
+        <h1>FoodLens</h1>
+      </div>
+      <button id="refreshButton">Refresh analysis</button>
+    </header>
+
+    <main>
+      <section class="summary">
+        <div>
+          <h2>Your order history, decoded</h2>
+          <p>
+            A local prototype that turns Swiggy order history into spending,
+            craving, timing, and reorder insights. This demo uses mocked data
+            until MCP staging access is available.
+          </p>
+        </div>
+        <div class="control-panel">
+          <label>
+            <span>Period</span>
+            <select id="periodSelector">
+              <option value="7">Last 7 days</option>
+              <option value="14">Last 2 weeks</option>
+              <option value="30" selected>Last 1 month</option>
+              <option value="120">Last 4 months</option>
+              <option value="180">Last 6 months</option>
+            </select>
+          </label>
+          <label>
+            <span>Monthly budget</span>
+            <input id="budgetInput" type="number" min="1000" step="500" value="6000">
+          </label>
+        </div>
+      </section>
+
+      <section class="metrics" id="metrics"></section>
+
+      <section class="grid">
+        <article>
+          <h3>Budget & Projection</h3>
+          <div id="budgetInsights" class="insight-cards"></div>
+        </article>
+        <article>
+          <h3>Food Personality</h3>
+          <div id="foodPersonality" class="personality-card"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Agent Summary</h3>
+          <ul id="insights" class="text-list"></ul>
+        </article>
+        <article>
+          <h3>Recommendations</h3>
+          <ul id="recommendations" class="text-list"></ul>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Savings Simulation</h3>
+          <div id="savingsOpportunities" class="savings-list"></div>
+        </article>
+        <article>
+          <h3>Habit Triggers</h3>
+          <ul id="habitTriggers" class="text-list"></ul>
+        </article>
+      </section>
+
+      <section class="ranking-panel">
+        <article>
+          <div class="section-toolbar">
+            <h3>Top Food Patterns</h3>
+            <label>
+              <span>Show</span>
+              <select id="rankingSelector">
+                <option value="top_dishes">Top dishes</option>
+                <option value="top_restaurants">Top restaurants</option>
+                <option value="top_cuisines">Top cuisines</option>
+              </select>
+            </label>
+          </div>
+          <div id="selectedRanking" class="ranked wide-ranked"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article>
+          <h3>Meal Window Pattern</h3>
+          <div id="timeBuckets" class="bars"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Hourly Ordering Graph</h3>
+          <div id="hourlyBreakdown" class="column-chart"></div>
+        </article>
+        <article>
+          <h3>Weekday Ordering Graph</h3>
+          <div id="weekdayBreakdown" class="column-chart weekday-chart"></div>
+        </article>
+      </section>
+
+      <section class="architecture">
+        <h3>MCP Integration Path</h3>
+        <div class="steps">
+          <span>OAuth consent</span>
+          <span>Food MCP order tools</span>
+          <span>Python analysis</span>
+          <span>LLM insight layer</span>
+          <span>User actions</span>
+        </div>
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>

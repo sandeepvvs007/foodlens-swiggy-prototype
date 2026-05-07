@@ -1,0 +1,177 @@
+const rupees = new Intl.NumberFormat("en-IN", {
+  style: "currency",
+  currency: "INR",
+  maximumFractionDigits: 0,
+});
+
+const metricLabels = {
+  order_count: "Orders",
+  total_spend: "Total spend",
+  average_order_value: "Avg order",
+  projected_monthly_spend: "Projected month",
+  delivery_fee_total: "Fees paid",
+  orders_per_week: "Orders / week",
+};
+
+let currentAnalysis = null;
+
+function formatMetric(key, value) {
+  if (["total_spend", "average_order_value", "projected_monthly_spend", "delivery_fee_total"].includes(key)) {
+    return rupees.format(value);
+  }
+  return value;
+}
+
+function renderMetrics(metrics) {
+  const container = document.querySelector("#metrics");
+  const visibleMetrics = [
+    "order_count",
+    "total_spend",
+    "average_order_value",
+    "projected_monthly_spend",
+    "delivery_fee_total",
+    "orders_per_week",
+  ];
+  container.innerHTML = visibleMetrics
+    .filter((key) => Object.hasOwn(metrics, key))
+    .map((key) => [key, metrics[key]])
+    .map(([key, value]) => `
+      <article class="metric">
+        <span>${metricLabels[key] || key}</span>
+        <strong>${formatMetric(key, value)}</strong>
+      </article>
+    `)
+    .join("");
+}
+
+function renderInsightCards(selector, items) {
+  document.querySelector(selector).innerHTML = items
+    .map((item) => `
+      <div class="insight-card">
+        <span>${item.title}</span>
+        <strong>${item.value}</strong>
+        <p>${item.detail}</p>
+      </div>
+    `)
+    .join("");
+}
+
+function renderSavings(selector, items) {
+  document.querySelector(selector).innerHTML = items
+    .map((item) => `
+      <div class="saving-row">
+        <div>
+          <strong>${item.title}</strong>
+          <span>${item.detail}</span>
+        </div>
+        <em>${item.amount}</em>
+      </div>
+    `)
+    .join("");
+}
+
+function renderFoodPersonality(personality, tags) {
+  const tagMarkup = tags
+    .map((tag) => `<span>${tag.name} · ${tag.count}x</span>`)
+    .join("");
+  document.querySelector("#foodPersonality").innerHTML = `
+    <strong>${personality.name}</strong>
+    <p>${personality.detail}</p>
+    <div class="score-line">
+      <span>Experimentation score</span>
+      <em>${personality.experimentation_score}%</em>
+    </div>
+    <div class="score-track">
+      <div style="width: ${personality.experimentation_score}%"></div>
+    </div>
+    <p>${personality.unique_restaurants} unique restaurants in this period.</p>
+    <div class="tag-list">${tagMarkup}</div>
+  `;
+}
+
+function renderList(selector, items) {
+  document.querySelector(selector).innerHTML = items
+    .map((item) => `<li>${item}</li>`)
+    .join("");
+}
+
+function renderRanked(selector, items) {
+  document.querySelector(selector).innerHTML = items
+    .map((item, index) => `
+      <div class="rank-row">
+        <span>${index + 1}</span>
+        <strong>${item.name}</strong>
+        <em>${item.count}x</em>
+      </div>
+    `)
+    .join("");
+}
+
+function renderBars(selector, items) {
+  const max = Math.max(...items.map((item) => item.count), 1);
+  document.querySelector(selector).innerHTML = items
+    .map((item) => `
+      <div class="bar-row">
+        <div class="bar-label">
+          <span>${item.name}</span>
+          <strong>${item.count}</strong>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: ${(item.count / max) * 100}%"></div>
+        </div>
+      </div>
+    `)
+    .join("");
+}
+
+function renderSelectedRanking() {
+  if (!currentAnalysis) {
+    return;
+  }
+  const selector = document.querySelector("#rankingSelector");
+  renderRanked("#selectedRanking", currentAnalysis[selector.value] || []);
+}
+
+function renderColumnChart(selector, items, options = {}) {
+  const max = Math.max(...items.map((item) => item.count), 1);
+  const filtered = options.hideEmpty ? items.filter((item) => item.count > 0) : items;
+  document.querySelector(selector).innerHTML = filtered
+    .map((item) => {
+      const height = item.count === 0 ? 2 : Math.max((item.count / max) * 100, 12);
+      return `
+        <div class="column-item">
+          <div class="column-value">${item.count}</div>
+          <div class="column-track">
+            <div class="column-fill" style="height: ${height}%"></div>
+          </div>
+          <span>${options.shortLabels ? item.name.slice(0, 3) : item.name}</span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+async function loadAnalysis() {
+  const period = document.querySelector("#periodSelector").value;
+  const budget = document.querySelector("#budgetInput").value || "6000";
+  const response = await fetch(`/api/analysis?period=${period}&budget=${budget}`);
+  const data = await response.json();
+  currentAnalysis = data;
+  renderMetrics(data.metrics);
+  renderInsightCards("#budgetInsights", data.budget_insights);
+  renderFoodPersonality(data.food_personality, data.pattern_tags);
+  renderList("#insights", data.insights);
+  renderList("#recommendations", data.recommendations);
+  renderList("#habitTriggers", data.habit_triggers);
+  renderSavings("#savingsOpportunities", data.savings_opportunities);
+  renderSelectedRanking();
+  renderBars("#timeBuckets", data.time_buckets);
+  renderColumnChart("#hourlyBreakdown", data.hourly_breakdown, { hideEmpty: true });
+  renderColumnChart("#weekdayBreakdown", data.weekday_breakdown, { shortLabels: true });
+}
+
+document.querySelector("#refreshButton").addEventListener("click", loadAnalysis);
+document.querySelector("#periodSelector").addEventListener("change", loadAnalysis);
+document.querySelector("#budgetInput").addEventListener("change", loadAnalysis);
+document.querySelector("#rankingSelector").addEventListener("change", renderSelectedRanking);
+loadAnalysis();
