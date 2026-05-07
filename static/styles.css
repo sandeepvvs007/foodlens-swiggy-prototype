@@ -225,7 +225,8 @@ input {
 }
 
 .insight-cards,
-.savings-list {
+.savings-list,
+.hidden-costs {
   display: grid;
   gap: 10px;
 }
@@ -284,6 +285,115 @@ input {
   color: var(--green);
   font-style: normal;
   font-weight: 900;
+}
+
+.burn-card,
+.weekly-goal {
+  display: grid;
+  gap: 12px;
+}
+
+.burn-header {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.burn-header strong {
+  font-size: 42px;
+  line-height: 1;
+}
+
+.burn-header span {
+  background: #fff4eb;
+  border-radius: 999px;
+  color: #9a4a08;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 8px 10px;
+  text-transform: uppercase;
+}
+
+.burn-track,
+.cost-track {
+  background: #e8edf6;
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.burn-track div {
+  background: var(--swiggy);
+  height: 100%;
+}
+
+.burn-card p,
+.weekly-goal p,
+.cost-row p,
+.swiggy-one p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.burn-meta {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 10px;
+}
+
+.goal-number {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.weekly-goal ul {
+  color: #333946;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.cost-row {
+  display: grid;
+  gap: 7px;
+}
+
+.cost-label {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.cost-label em {
+  color: var(--green);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.cost-track div {
+  background: var(--blue);
+  height: 100%;
+}
+
+.swiggy-one {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.swiggy-one strong {
+  color: #9a4a08;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .personality-card {

@@ -87,7 +87,10 @@ def _empty_response(period_days: int | None, monthly_budget: int) -> dict:
         "hourly_breakdown": [],
         "weekday_breakdown": [],
         "budget_insights": [],
+        "budget_burn": {},
+        "hidden_costs": [],
         "habit_triggers": [],
+        "weekly_goal": {},
         "savings_opportunities": [],
         "food_personality": {},
         "pattern_tags": [],
@@ -142,12 +145,17 @@ def analyze_orders(
     restaurant_spend: defaultdict[str, int] = defaultdict(int)
     high_spend_orders = 0
     small_orders = 0
+    add_on_spend = 0
+    high_value_spend = 0
 
     for order in enriched:
         for item in order["items"]:
             dish_counter[item] += 1
             for macro, grams in _estimate_item_macros(item).items():
                 macro_totals[macro] += grams
+            item_tags = _classify_items([item])
+            if "dessert" in item_tags or "drink" in item_tags:
+                add_on_spend += min(round(order["amount"] * 0.22), 180)
         for tag in _classify_items(order["items"]):
             tag_counter[tag] += 1
         restaurant_counter[order["restaurant"]] += 1
@@ -158,6 +166,7 @@ def analyze_orders(
         restaurant_spend[order["restaurant"]] += order["amount"]
         if order["amount"] >= 450:
             high_spend_orders += 1
+            high_value_spend += order["amount"]
         if order["amount"] < 300:
             small_orders += 1
 
@@ -182,6 +191,13 @@ def analyze_orders(
     projected_monthly_spend = round(total_spend / max(observed_days_for_projection, 1) * 30)
     projected_over_budget = max(projected_monthly_spend - monthly_budget, 0)
     budget_remaining = monthly_budget - projected_monthly_spend
+    budget_used_percent = min(round(projected_monthly_spend / max(monthly_budget, 1) * 100), 999)
+    daily_budget = monthly_budget / 30
+    daily_spend_rate = total_spend / max(observed_days_for_projection, 1)
+    projected_budget_runout_day = (
+        min(round(monthly_budget / daily_spend_rate), 30) if daily_spend_rate else 30
+    )
+    burn_status = "over pace" if projected_monthly_spend > monthly_budget else "on track"
 
     weekend_orders = sum(
         1 for order in enriched if order["dt"].strftime("%A") in {"Saturday", "Sunday"}
@@ -225,6 +241,55 @@ def analyze_orders(
             "detail": "Share of orders coming from your top 3 restaurants.",
         },
     ]
+
+    food_subtotal = max(total_spend - delivery_fee_total, 0)
+    hidden_costs = [
+        {
+            "name": "Food subtotal",
+            "amount": food_subtotal,
+            "detail": "Estimated spend on items before delivery fees.",
+        },
+        {
+            "name": "Delivery fees",
+            "amount": delivery_fee_total,
+            "detail": "Fees paid across orders in this period.",
+        },
+        {
+            "name": "Dessert/drink add-ons",
+            "amount": add_on_spend,
+            "detail": "Estimated spend linked to dessert and drink items.",
+        },
+        {
+            "name": "Rs 450+ orders",
+            "amount": high_value_spend,
+            "detail": "Spend from higher-value orders where swaps can save money.",
+        },
+    ]
+
+    swiggy_one_suggestion = None
+    if delivery_fee_total >= 250 or round(mean(delivery_fees)) >= 35:
+        swiggy_one_suggestion = {
+            "title": "Check Swiggy One savings",
+            "detail": (
+                f"You paid Rs {delivery_fee_total:,} in delivery fees this period. "
+                "If you order often, compare that against Swiggy One's fee savings before subscribing."
+            ),
+        }
+
+    weekly_budget_goal = round(monthly_budget / 4)
+    current_weekly_pace = round(projected_monthly_spend / 4)
+    target_order_count = max(round(order_count / max(observed_days_for_projection, 1) * 7) - 1, 1)
+    weekly_goal = {
+        "title": "This week's goal",
+        "budget": weekly_budget_goal,
+        "current_pace": current_weekly_pace,
+        "actions": [
+            f"Keep Swiggy spend under Rs {weekly_budget_goal:,}.",
+            f"Limit restaurant orders to {target_order_count} planned orders.",
+            "Avoid unplanned dessert or drink add-ons twice this week.",
+            "Check delivery fee before checkout; prefer nearby options when fee is high.",
+        ],
+    }
 
     habit_triggers = [
         f"Peak trigger: {peak_day_name} around {peak_hour[0]}. Add a planned meal reminder 60-90 minutes earlier.",
@@ -334,7 +399,21 @@ def analyze_orders(
             ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         ),
         "budget_insights": budget_insights,
+        "budget_burn": {
+            "status": burn_status,
+            "budget_used_percent": budget_used_percent,
+            "monthly_budget": monthly_budget,
+            "projected_monthly_spend": projected_monthly_spend,
+            "projected_budget_runout_day": projected_budget_runout_day,
+            "detail": (
+                f"At your current pace, your Rs {monthly_budget:,} budget would last about "
+                f"{projected_budget_runout_day} days."
+            ),
+        },
+        "hidden_costs": hidden_costs,
+        "swiggy_one_suggestion": swiggy_one_suggestion,
         "habit_triggers": habit_triggers,
+        "weekly_goal": weekly_goal,
         "savings_opportunities": savings_opportunities,
         "food_personality": food_personality,
         "pattern_tags": _top(tag_counter, 6),

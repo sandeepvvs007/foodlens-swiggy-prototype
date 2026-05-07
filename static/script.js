@@ -71,6 +71,64 @@ function renderSavings(selector, items) {
     .join("");
 }
 
+function renderBudgetBurn(burn) {
+  const percent = Math.min(burn.budget_used_percent || 0, 100);
+  document.querySelector("#budgetBurn").innerHTML = `
+    <div class="burn-header">
+      <strong>${burn.budget_used_percent}%</strong>
+      <span>${burn.status}</span>
+    </div>
+    <div class="burn-track">
+      <div style="width: ${percent}%"></div>
+    </div>
+    <p>${burn.detail}</p>
+    <div class="burn-meta">
+      <span>Budget ${rupees.format(burn.monthly_budget || 0)}</span>
+      <span>Projected ${rupees.format(burn.projected_monthly_spend || 0)}</span>
+    </div>
+  `;
+}
+
+function renderWeeklyGoal(goal) {
+  document.querySelector("#weeklyGoal").innerHTML = `
+    <div class="goal-number">${rupees.format(goal.budget || 0)}</div>
+    <p>Current weekly pace: ${rupees.format(goal.current_pace || 0)}</p>
+    <ul>
+      ${(goal.actions || []).map((action) => `<li>${action}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function renderHiddenCosts(costs, swiggyOneSuggestion) {
+  const total = costs.reduce((sum, item) => sum + item.amount, 0);
+  document.querySelector("#hiddenCosts").innerHTML = costs
+    .map((item) => {
+      const width = total ? Math.max((item.amount / total) * 100, 4) : 4;
+      return `
+        <div class="cost-row">
+          <div class="cost-label">
+            <strong>${item.name}</strong>
+            <em>${rupees.format(item.amount)}</em>
+          </div>
+          <div class="cost-track">
+            <div style="width: ${width}%"></div>
+          </div>
+          <p>${item.detail}</p>
+        </div>
+      `;
+    })
+    .join("");
+
+  document.querySelector("#swiggyOneSuggestion").innerHTML = swiggyOneSuggestion
+    ? `
+      <div class="swiggy-one">
+        <strong>${swiggyOneSuggestion.title}</strong>
+        <p>${swiggyOneSuggestion.detail}</p>
+      </div>
+    `
+    : "";
+}
+
 function renderFoodPersonality(personality, tags) {
   const tagMarkup = tags
     .map((tag) => `<span>${tag.name} · ${tag.count}x</span>`)
@@ -204,6 +262,9 @@ async function loadAnalysis() {
   currentAnalysis = data;
   renderMetrics(data.metrics);
   renderInsightCards("#budgetInsights", data.budget_insights);
+  renderBudgetBurn(data.budget_burn || {});
+  renderWeeklyGoal(data.weekly_goal || {});
+  renderHiddenCosts(data.hidden_costs || [], data.swiggy_one_suggestion);
   renderFoodPersonality(data.food_personality, data.pattern_tags);
   renderList("#insights", data.agent_summary || data.insights);
   renderList("#recommendations", data.agent_recommendations || data.recommendations);
