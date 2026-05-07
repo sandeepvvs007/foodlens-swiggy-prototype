@@ -1,0 +1,143 @@
+{
+  "period": {
+    "label": "Last 1 month",
+    "days": 30
+  },
+  "budget": {
+    "monthly_budget": 6000
+  },
+  "metrics": {
+    "order_count": 15,
+    "total_spend": 5631,
+    "average_order_value": 375,
+    "average_delivery_fee": 34,
+    "projected_monthly_spend": 5631,
+    "delivery_fee_total": 513,
+    "days_observed": 27,
+    "orders_per_week": 3.9
+  },
+  "data_quality": {
+    "status": "strong",
+    "score": 90,
+    "confidence_label": "Strong signal",
+    "summary": "Strong confidence based on 15 orders over 27 observed days.",
+    "checks": [
+      {
+        "name": "Order sample",
+        "status": "moderate",
+        "detail": "15 orders are available for this period."
+      },
+      {
+        "name": "History coverage",
+        "status": "strong",
+        "detail": "The selected period covers 27 observed days."
+      },
+      {
+        "name": "Cost fields",
+        "status": "strong",
+        "detail": "Delivery fee data is present."
+      },
+      {
+        "name": "Nutrition estimate",
+        "status": "estimated",
+        "detail": "Macro split is estimated from dish names, not verified restaurant nutrition."
+      }
+    ]
+  },
+  "prioritized_insights": [
+    {
+      "label": "Budget",
+      "title": "Keep this month under control",
+      "detail": "Projected spend is Rs 5,631 against a Rs 6,000 budget.",
+      "impact": "94% budget pace",
+      "confidence": "Strong signal",
+      "score": 96
+    },
+    {
+      "label": "Fees",
+      "title": "Reduce invisible delivery leakage",
+      "detail": "Delivery fees account for Rs 513 in this period.",
+      "impact": "Immediate savings lever",
+      "confidence": "Strong signal",
+      "score": 90
+    },
+    {
+      "label": "Timing",
+      "title": "Plan around your strongest ordering window",
+      "detail": "Your peak pattern is Dinner around 20:00.",
+      "impact": "Better pre-order decisions",
+      "confidence": "Strong signal",
+      "score": 82
+    },
+    {
+      "label": "Membership",
+      "title": "Swiggy One may be worth checking",
+      "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
+      "impact": "Could reduce fee pressure",
+      "confidence": "Strong signal",
+      "score": 78
+    },
+    {
+      "label": "Goal",
+      "title": "Use one weekly cap instead of daily guilt",
+      "detail": "This week's suggested cap is Rs 1,500.",
+      "impact": "Simple behavior change",
+      "confidence": "Strong signal",
+      "score": 76
+    }
+  ],
+  "next_best_actions": [
+    {
+      "title": "Set this week's Swiggy cap",
+      "detail": "Use Rs 1,500 as the limit before placing more orders.",
+      "impact": "Budget control",
+      "confidence": "Strong signal"
+    },
+    {
+      "title": "Check Swiggy One before subscribing",
+      "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
+      "impact": "Fee savings check",
+      "confidence": "Strong signal"
+    },
+    {
+      "title": "Put a pause before peak-hour orders",
+      "detail": "Show the budget nudge before 20:00, your strongest ordering slot.",
+      "impact": "Impulse reduction",
+      "confidence": "Strong signal"
+    },
+    {
+      "title": "Compare repeat alternatives",
+      "detail": "When Meghana Foods appears, compare it with two cheaper similar options.",
+      "impact": "Repeat spend optimization",
+      "confidence": "Strong signal"
+    }
+  ],
+  "agent_summary": [
+    "Projected monthly spend is Rs 5,631 against a Rs 6,000 budget.",
+    "Projected spend uses 94% of the monthly budget.",
+    "Delivery fees account for Rs 513.",
+    "Top priority: Keep this month under control.",
+    "Next best action: Set this week's Swiggy cap.",
+    "Analysis confidence: Strong signal."
+  ],
+  "subscription_value": {
+    "status": "worth checking",
+    "title": "Swiggy One may be worth checking",
+    "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
+    "evidence": [
+      "Delivery fees: Rs 513",
+      "Ordering pace: 3.9 orders/week"
+    ]
+  },
+  "nutrition_confidence": {
+    "status": "estimated",
+    "score": 45,
+    "summary": "Macro split is useful for pattern awareness, but it is estimated from dish names.",
+    "do_not_use_for": [
+      "medical advice",
+      "diagnosis",
+      "guaranteed weight loss",
+      "precise calorie tracking"
+    ]
+  }
+}
