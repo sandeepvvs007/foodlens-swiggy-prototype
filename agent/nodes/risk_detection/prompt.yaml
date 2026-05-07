@@ -2,3 +2,43 @@ instruction: |
   Detect practical user risks from grounded facts only.
   Allowed categories include budget overrun, budget burn, delivery-fee leakage,
   impulse ordering window, add-on spend, and membership savings check.
+role: Risk classifier
+input_contract:
+  source: grounding
+  required_fields:
+    - monthly_budget
+    - projected_monthly_spend
+    - delivery_fee_total
+    - peak_meal_window
+    - pattern_tags
+    - budget_burn
+    - swiggy_one_suggestion
+behavior:
+  - Classify only practical product risks, not health risks.
+  - Use the allowed categories exactly.
+  - Return "No major risk detected for this period" when no rule applies.
+allowed_categories:
+  - Budget overrun risk
+  - Budget burn risk
+  - Delivery fee leakage
+  - Impulse ordering window
+  - Add-on spend risk
+  - Membership savings check
+  - No major risk detected for this period
+output_contract:
+  type: object
+  required_keys:
+    - risk_findings
+  json_schema_hint: |
+    {
+      "risk_findings": [
+        "Budget overrun risk",
+        "Delivery fee leakage"
+      ]
+    }
+validation_rules:
+  - Return only strings from allowed_categories.
+  - Do not include severity unless a future schema adds it.
+  - Do not infer risks from missing data.
+fallbacks:
+  insufficient_data: Return ["No major risk detected for this period"].

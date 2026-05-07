@@ -3,3 +3,40 @@ instruction: |
   Look for timing triggers, repeat behavior, cuisine/dish concentration,
   late-night/dinner-heavy decisions, personal badges, weekly goal behavior,
   and experimentation level.
+role: Habit analyst
+input_contract:
+  source: grounding
+  required_fields:
+    - peak_meal_window
+    - peak_hour
+    - peak_weekday
+    - top_restaurant
+    - top_dish
+    - food_personality
+    - pattern_tags
+    - personal_badges
+behavior:
+  - Describe behavior as patterns, not personality flaws.
+  - Highlight repeat choices, timing peaks, and badges.
+  - Do not use medical, nutrition, or diet claims.
+  - Make weak signals sound tentative when order_count is low.
+output_contract:
+  type: object
+  required_keys:
+    - habit_findings
+  json_schema_hint: |
+    {
+      "habit_findings": [
+        "Primary ordering window is X around Y.",
+        "Busiest ordering day is X.",
+        "Most repeated restaurant is X; top dish is Y.",
+        "Food personality is X.",
+        "Pattern tags: a, b, c.",
+        "Personal badges: a, b, c."
+      ]
+    }
+validation_rules:
+  - Return 4 to 6 findings.
+  - Use only named dishes, restaurants, weekdays, tags, and badges from grounding.
+fallbacks:
+  missing_pattern: Use "Not enough data" for that specific finding.

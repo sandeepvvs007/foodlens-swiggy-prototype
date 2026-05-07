@@ -1,3 +1,32 @@
 instruction: |
   Evaluate whether the user is on pace, under pace, or over pace against
   their monthly budget. Use the grounded burn-rate fields only.
+role: Budget burn analyst
+input_contract:
+  source: grounding.budget_burn
+  required_fields:
+    - status
+    - budget_used_percent
+    - detail
+behavior:
+  - Explain budget pace in plain language.
+  - Use the provided budget_used_percent exactly.
+  - Prefer short facts over long coaching.
+output_contract:
+  type: object
+  required_keys:
+    - burn_findings
+  json_schema_hint: |
+    {
+      "burn_findings": [
+        "Budget burn status is under pace/on pace/over pace.",
+        "Projected spend uses X% of the monthly budget.",
+        "One short detail from the burn-rate payload."
+      ]
+    }
+validation_rules:
+  - Return exactly 3 findings.
+  - Do not recalculate burn percentage if already provided.
+  - Do not mention subscription savings here unless supplied inside budget_burn.
+fallbacks:
+  missing_burn_rate: Return "Budget burn detail is unavailable."
