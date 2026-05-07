@@ -14,6 +14,7 @@ const metricLabels = {
 };
 
 let currentAnalysis = null;
+const chartColors = ["#fc8019", "#2457c5", "#157f5b", "#d97706", "#7c3aed", "#0f766e"];
 
 function formatMetric(key, value) {
   if (["total_spend", "average_order_value", "projected_monthly_spend", "delivery_fee_total"].includes(key)) {
@@ -107,6 +108,45 @@ function renderRanked(selector, items) {
     .join("");
 }
 
+function renderPieChart(selector, items) {
+  const total = items.reduce((sum, item) => sum + item.count, 0);
+  if (!items.length || total === 0) {
+    document.querySelector(selector).innerHTML = `<p class="empty-state">Not enough data for this period.</p>`;
+    return;
+  }
+
+  let runningTotal = 0;
+  const segments = items.map((item, index) => {
+    const start = (runningTotal / total) * 100;
+    runningTotal += item.count;
+    const end = (runningTotal / total) * 100;
+    return `${chartColors[index % chartColors.length]} ${start}% ${end}%`;
+  });
+
+  const legend = items
+    .map((item, index) => {
+      const percent = Math.round((item.count / total) * 100);
+      return `
+        <div class="legend-row">
+          <span style="background: ${chartColors[index % chartColors.length]}"></span>
+          <strong>${item.name}</strong>
+          <em>${item.count}x · ${percent}%</em>
+        </div>
+      `;
+    })
+    .join("");
+
+  document.querySelector(selector).innerHTML = `
+    <div class="donut-chart" style="background: conic-gradient(${segments.join(", ")})">
+      <div>
+        <strong>${total}</strong>
+        <span>orders</span>
+      </div>
+    </div>
+    <div class="pie-legend">${legend}</div>
+  `;
+}
+
 function renderBars(selector, items) {
   const max = Math.max(...items.map((item) => item.count), 1);
   document.querySelector(selector).innerHTML = items
@@ -129,7 +169,7 @@ function renderSelectedRanking() {
     return;
   }
   const selector = document.querySelector("#rankingSelector");
-  renderRanked("#selectedRanking", currentAnalysis[selector.value] || []);
+  renderPieChart("#selectedRanking", currentAnalysis[selector.value] || []);
 }
 
 function renderColumnChart(selector, items, options = {}) {
