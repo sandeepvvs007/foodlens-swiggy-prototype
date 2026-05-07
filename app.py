@@ -5,6 +5,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
+from agent_graph import run_foodlens_agent
 from analyzer import analyze_orders
 
 
@@ -33,7 +34,9 @@ class PrototypeHandler(SimpleHTTPRequestHandler):
         monthly_budget = self._to_int(query.get("budget", ["6000"])[0], 6000)
         with DATA_PATH.open("r", encoding="utf-8") as file:
             orders = json.load(file)
-        self._send_json(analyze_orders(orders, period_days, monthly_budget))
+        analysis = analyze_orders(orders, period_days, monthly_budget)
+        agent_output = run_foodlens_agent(analysis)
+        self._send_json({**analysis, **agent_output})
 
     def _to_int(self, value: str, default: int) -> int:
         try:

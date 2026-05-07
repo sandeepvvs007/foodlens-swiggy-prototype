@@ -1,6 +1,6 @@
 # FoodLens: Swiggy Order History Insights Prototype
 
-FoodLens is a local prototype for a Swiggy Builders Club application. It analyzes mocked Swiggy order history and produces user-facing insights about spending, favorite dishes, repeat restaurants, cuisine preferences, usual ordering times, and practical recommendations.
+FoodLens is a local prototype for a Swiggy Builders Club application. It analyzes mocked Swiggy order history and produces user-facing insights about spending, favorite dishes, repeat restaurants, cuisine preferences, usual ordering times, budget leakage, savings opportunities, and practical recommendations.
 
 ## Why this exists
 
@@ -10,7 +10,9 @@ Swiggy MCP production access is whitelist-based. This prototype lets you demonst
 
 ```bash
 cd swiggy_food_insights_prototype
-python3 app.py
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python app.py
 ```
 
 Open:
@@ -33,6 +35,25 @@ The mocked `data/mock_orders.json` file should later be replaced with calls to S
 2. Backend calls Swiggy MCP order/history tools when available.
 3. Raw order data is normalized into the current order schema.
 4. `analyzer.py` computes deterministic metrics.
-5. An LLM generates a concise user-facing summary and recommendations.
+5. `agent_graph.py` runs a LangGraph workflow over those grounded metrics.
+6. An LLM can later be added inside the graph nodes to generate richer summaries while preserving the same guardrails.
 
 No cart changes or ordering actions should happen without explicit user confirmation.
+
+## Agent architecture
+
+The prototype uses LangGraph nodes and edges:
+
+```text
+START
+  -> ground_context
+  -> spend_analysis
+  -> habit_analysis
+  -> risk_detection
+  -> recommendation_drafter
+  -> guardrail_review
+  -> final_response
+END
+```
+
+Prompt grounding is kept in `prompts.py`. The graph treats deterministic analytics as the source of truth and runs guardrail checks for unsupported medical claims, invented metrics, hidden cart/order actions, and ungrounded recommendations.

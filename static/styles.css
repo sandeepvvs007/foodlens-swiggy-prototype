@@ -227,7 +227,8 @@ input {
 }
 
 .insight-cards,
-.savings-list {
+.savings-list,
+.workflow-list {
   display: grid;
   gap: 10px;
 }
@@ -342,6 +343,79 @@ input {
   font-size: 12px;
   font-weight: 800;
   padding: 7px 10px;
+}
+
+.workflow-step {
+  align-items: start;
+  border-top: 1px solid #eef1f6;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 34px 1fr;
+  padding-top: 12px;
+}
+
+.workflow-step:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.workflow-step > span {
+  align-items: center;
+  background: #eef4ff;
+  border-radius: 50%;
+  color: var(--blue);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.workflow-step strong {
+  display: block;
+  text-transform: capitalize;
+}
+
+.workflow-step p,
+.guardrail-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.guardrail-card {
+  display: grid;
+  gap: 12px;
+}
+
+.guardrail-card > strong {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  justify-self: start;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+.guardrail-card .passed {
+  background: #eaf7f1;
+  color: var(--green);
+}
+
+.guardrail-card .blocked {
+  background: #fff1f1;
+  color: #b42318;
+}
+
+.guardrail-card ul {
+  color: #333946;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
 }
 
 .text-list {
