@@ -89,32 +89,6 @@ function renderFoodPersonality(personality, tags) {
   `;
 }
 
-function renderWorkflow(trace) {
-  document.querySelector("#workflowTrace").innerHTML = trace
-    .map((step, index) => `
-      <div class="workflow-step">
-        <span>${index + 1}</span>
-        <div>
-          <strong>${step.node.replaceAll("_", " ")}</strong>
-          <p>${step.status}</p>
-        </div>
-      </div>
-    `)
-    .join("");
-}
-
-function renderGuardrails(guardrails) {
-  const checks = (guardrails.checks || [])
-    .map((check) => `<li>${check}</li>`)
-    .join("");
-  const status = guardrails.status || "unknown";
-  document.querySelector("#guardrailStatus").innerHTML = `
-    <strong class="${status === "passed" ? "passed" : "blocked"}">${status}</strong>
-    <p>${status === "passed" ? "Agent output passed grounded safety checks." : "Review blocked one or more unsafe claims."}</p>
-    <ul>${checks}</ul>
-  `;
-}
-
 function renderList(selector, items) {
   document.querySelector(selector).innerHTML = items
     .map((item) => `<li>${item}</li>`)
@@ -188,8 +162,6 @@ async function loadAnalysis() {
   renderFoodPersonality(data.food_personality, data.pattern_tags);
   renderList("#insights", data.agent_summary || data.insights);
   renderList("#recommendations", data.agent_recommendations || data.recommendations);
-  renderWorkflow(data.workflow_trace || []);
-  renderGuardrails(data.guardrails || {});
   renderList("#habitTriggers", data.habit_triggers);
   renderSavings("#savingsOpportunities", data.savings_opportunities);
   renderSelectedRanking();
