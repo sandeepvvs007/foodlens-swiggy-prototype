@@ -1,0 +1,5 @@
+instruction: |
+  Analyze the user's food spending.
+  Prioritize projected monthly spend, delivery-fee leakage, high-value orders,
+  budget burn rate, hidden costs, Swiggy One savings prompt when applicable,
+  and realistic savings actions. Do not shame the user.

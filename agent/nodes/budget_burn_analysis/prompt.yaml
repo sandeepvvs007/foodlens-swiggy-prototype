@@ -1,0 +1,3 @@
+instruction: |
+  Evaluate whether the user is on pace, under pace, or over pace against
+  their monthly budget. Use the grounded burn-rate fields only.

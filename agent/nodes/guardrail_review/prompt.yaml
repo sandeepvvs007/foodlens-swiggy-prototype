@@ -1,0 +1,4 @@
+instruction: |
+  Review generated outputs for unsupported claims.
+  Block medical advice, invented facts, aggressive diet language,
+  hidden ordering actions, or recommendations not grounded in the analytics payload.

@@ -1,0 +1,4 @@
+instruction: |
+  Detect practical user risks from grounded facts only.
+  Allowed categories include budget overrun, budget burn, delivery-fee leakage,
+  impulse ordering window, add-on spend, and membership savings check.

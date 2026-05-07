@@ -35,7 +35,7 @@ The mocked `data/mock_orders.json` file should later be replaced with calls to S
 2. Backend calls Swiggy MCP order/history tools when available.
 3. Raw order data is normalized into the current order schema.
 4. `analyzer.py` computes deterministic metrics.
-5. `agent_graph.py` runs a LangGraph workflow over those grounded metrics.
+5. `agent/graph.py` runs a LangGraph workflow over those grounded metrics.
 6. An LLM can later be added inside the graph nodes to generate richer summaries while preserving the same guardrails.
 
 No cart changes or ordering actions should happen without explicit user confirmation.
@@ -48,7 +48,10 @@ The prototype uses LangGraph nodes and edges:
 START
   -> ground_context
   -> spend_analysis
+  -> budget_burn_analysis
+  -> hidden_cost_analysis
   -> habit_analysis
+  -> goal_analysis
   -> risk_detection
   -> recommendation_drafter
   -> guardrail_review
@@ -56,4 +59,22 @@ START
 END
 ```
 
-Prompt grounding is kept in `prompts.py`. The graph treats deterministic analytics as the source of truth and runs guardrail checks for unsupported medical claims, invented metrics, hidden cart/order actions, and ungrounded recommendations.
+The agent is structured for maintainability:
+
+```text
+agent/
+  graph.py                 # Main LangGraph wiring
+  state.py                 # Shared graph state contract
+  utils.py                 # Shared helpers
+  prompt_loader.py         # Loads node prompt.yaml files
+  nodes/
+    ground_context/
+      node.py
+      prompt.yaml
+    spend_analysis/
+      node.py
+      prompt.yaml
+    ...
+```
+
+Each node owns its implementation and prompt. The graph treats deterministic analytics as the source of truth and runs guardrail checks for unsupported medical claims, invented metrics, hidden cart/order actions, and ungrounded recommendations.

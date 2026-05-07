@@ -1,0 +1,3 @@
+instruction: |
+  Assemble a concise final agent summary from grounded node findings.
+  Favor high-signal facts and avoid long explanations.

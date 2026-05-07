@@ -1,0 +1,6 @@
+instruction: |
+  Generate next-best actions for the user.
+  Each recommendation must map to one of the grounded facts and should be useful
+  even if the user does not order every day. Prefer concrete actions around
+  weekly budget, delivery-fee checks, repeat alternatives, add-on control,
+  and next-order guardrails.

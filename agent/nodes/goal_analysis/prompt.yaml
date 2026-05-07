@@ -1,0 +1,4 @@
+instruction: |
+  Convert the user's monthly target into a practical weekly goal.
+  Keep the result concrete: spend cap, planned-order count, add-on control,
+  and delivery-fee check.
