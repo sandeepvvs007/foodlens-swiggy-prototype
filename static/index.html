@@ -53,6 +53,41 @@
         </article>
       </section>
 
+      <section class="ranking-panel">
+        <article>
+          <div class="section-toolbar">
+            <h3>Top Food Patterns</h3>
+            <label>
+              <span>Show</span>
+              <select id="rankingSelector">
+                <option value="top_dishes">Top dishes</option>
+                <option value="top_restaurants">Top restaurants</option>
+                <option value="macro_breakdown">Estimated nutrition</option>
+              </select>
+            </label>
+          </div>
+          <div id="selectedRanking" class="pie-layout"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Meal Window Pattern</h3>
+          <div id="timeBuckets" class="bars"></div>
+        </article>
+        <article>
+          <h3>Weekday Ordering Graph</h3>
+          <div id="weekdayBreakdown" class="column-chart weekday-chart"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article>
+          <h3>Hourly Ordering Graph</h3>
+          <div id="hourlyBreakdown" class="column-chart"></div>
+        </article>
+      </section>
+
       <section class="metrics" id="metrics"></section>
 
       <section class="grid">
@@ -114,40 +149,6 @@
         </article>
       </section>
 
-      <section class="ranking-panel">
-        <article>
-          <div class="section-toolbar">
-            <h3>Top Food Patterns</h3>
-            <label>
-              <span>Show</span>
-              <select id="rankingSelector">
-                <option value="top_dishes">Top dishes</option>
-                <option value="top_restaurants">Top restaurants</option>
-                <option value="macro_breakdown">Estimated nutrition</option>
-              </select>
-            </label>
-          </div>
-          <div id="selectedRanking" class="pie-layout"></div>
-        </article>
-      </section>
-
-      <section class="single-panel">
-        <article>
-          <h3>Meal Window Pattern</h3>
-          <div id="timeBuckets" class="bars"></div>
-        </article>
-      </section>
-
-      <section class="grid">
-        <article>
-          <h3>Hourly Ordering Graph</h3>
-          <div id="hourlyBreakdown" class="column-chart"></div>
-        </article>
-        <article>
-          <h3>Weekday Ordering Graph</h3>
-          <div id="weekdayBreakdown" class="column-chart weekday-chart"></div>
-        </article>
-      </section>
     </main>
 
     <script src="/script.js"></script>
