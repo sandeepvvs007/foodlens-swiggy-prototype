@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -13,7 +13,7 @@ def final_response(state: FoodLensState) -> FoodLensState:
         f"Main risks: {', '.join(state['risk_findings'])}.",
         state["goal_findings"][0],
     ]
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "final_response",
         "assembled final agent output",

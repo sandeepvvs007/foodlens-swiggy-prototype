@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -27,7 +27,7 @@ def recommendation_drafter(state: FoodLensState) -> FoodLensState:
     recommendations.append(
         f"For repeat behavior, compare {grounding['top_restaurant']} against two cheaper similar options."
     )
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "recommendation_drafter",
         "drafted grounded actions",

@@ -51,3 +51,15 @@ def merge_contract_output(
         **validated,
         "workflow_trace": trace(state, node_name, status),
     }
+
+
+def merge_structured_node_output(
+    state: FoodLensState,
+    node_name: str,
+    status: str,
+    deterministic_output: dict[str, Any],
+) -> FoodLensState:
+    from agent.llm_client import run_optional_llm_node
+
+    output = run_optional_llm_node(node_name, state, deterministic_output)
+    return merge_contract_output(state, node_name, status, output)
