@@ -1,143 +1,1432 @@
 {
-  "period": {
-    "label": "Last 1 month",
-    "days": 30
-  },
-  "budget": {
-    "monthly_budget": 6000
-  },
-  "metrics": {
-    "order_count": 15,
-    "total_spend": 5631,
-    "average_order_value": 375,
-    "average_delivery_fee": 34,
-    "projected_monthly_spend": 5631,
-    "delivery_fee_total": 513,
-    "days_observed": 27,
-    "orders_per_week": 3.9
-  },
-  "data_quality": {
-    "status": "strong",
-    "score": 90,
-    "confidence_label": "Strong signal",
-    "summary": "Strong confidence based on 15 orders over 27 observed days.",
-    "checks": [
-      {
-        "name": "Order sample",
-        "status": "moderate",
-        "detail": "15 orders are available for this period."
-      },
-      {
-        "name": "History coverage",
+    "period": {
+        "label": "Last 1 month",
+        "days": 30
+    },
+    "budget": {
+        "monthly_budget": 6000
+    },
+    "metrics": {
+        "order_count": 15,
+        "total_spend": 5631,
+        "average_order_value": 375,
+        "average_delivery_fee": 34,
+        "projected_monthly_spend": 5631,
+        "delivery_fee_total": 513,
+        "days_observed": 27,
+        "orders_per_week": 3.9
+    },
+    "top_dishes": [
+        {
+            "name": "Chicken Biryani",
+            "count": 4
+        },
+        {
+            "name": "Raita",
+            "count": 3
+        },
+        {
+            "name": "Mini Meals",
+            "count": 1
+        },
+        {
+            "name": "Filter Coffee",
+            "count": 1
+        },
+        {
+            "name": "Chicken Kebab Roll",
+            "count": 1
+        }
+    ],
+    "top_restaurants": [
+        {
+            "name": "Meghana Foods",
+            "count": 5
+        },
+        {
+            "name": "A2B",
+            "count": 1
+        },
+        {
+            "name": "Empire Restaurant",
+            "count": 1
+        },
+        {
+            "name": "Polar Bear",
+            "count": 1
+        },
+        {
+            "name": "Third Wave Coffee",
+            "count": 1
+        }
+    ],
+    "top_cuisines": [
+        {
+            "name": "Biryani",
+            "count": 5
+        },
+        {
+            "name": "Desserts",
+            "count": 2
+        },
+        {
+            "name": "South Indian",
+            "count": 1
+        },
+        {
+            "name": "North Indian",
+            "count": 1
+        },
+        {
+            "name": "Cafe",
+            "count": 1
+        }
+    ],
+    "macro_breakdown": [
+        {
+            "name": "Protein",
+            "count": 345,
+            "unit": "g"
+        },
+        {
+            "name": "Carbs",
+            "count": 1111,
+            "unit": "g"
+        },
+        {
+            "name": "Fats",
+            "count": 364,
+            "unit": "g"
+        },
+        {
+            "name": "Fiber",
+            "count": 70,
+            "unit": "g"
+        },
+        {
+            "name": "Sugar",
+            "count": 270,
+            "unit": "g"
+        }
+    ],
+    "time_buckets": [
+        {
+            "name": "Dinner",
+            "count": 10
+        },
+        {
+            "name": "Lunch",
+            "count": 3
+        },
+        {
+            "name": "Morning",
+            "count": 1
+        },
+        {
+            "name": "Late night",
+            "count": 1
+        }
+    ],
+    "hourly_breakdown": [
+        {
+            "name": "00:00",
+            "count": 0
+        },
+        {
+            "name": "01:00",
+            "count": 0
+        },
+        {
+            "name": "02:00",
+            "count": 0
+        },
+        {
+            "name": "03:00",
+            "count": 0
+        },
+        {
+            "name": "04:00",
+            "count": 0
+        },
+        {
+            "name": "05:00",
+            "count": 0
+        },
+        {
+            "name": "06:00",
+            "count": 0
+        },
+        {
+            "name": "07:00",
+            "count": 0
+        },
+        {
+            "name": "08:00",
+            "count": 0
+        },
+        {
+            "name": "09:00",
+            "count": 1
+        },
+        {
+            "name": "10:00",
+            "count": 0
+        },
+        {
+            "name": "11:00",
+            "count": 0
+        },
+        {
+            "name": "12:00",
+            "count": 0
+        },
+        {
+            "name": "13:00",
+            "count": 2
+        },
+        {
+            "name": "14:00",
+            "count": 1
+        },
+        {
+            "name": "15:00",
+            "count": 0
+        },
+        {
+            "name": "16:00",
+            "count": 0
+        },
+        {
+            "name": "17:00",
+            "count": 0
+        },
+        {
+            "name": "18:00",
+            "count": 0
+        },
+        {
+            "name": "19:00",
+            "count": 1
+        },
+        {
+            "name": "20:00",
+            "count": 5
+        },
+        {
+            "name": "21:00",
+            "count": 3
+        },
+        {
+            "name": "22:00",
+            "count": 1
+        },
+        {
+            "name": "23:00",
+            "count": 1
+        }
+    ],
+    "weekday_breakdown": [
+        {
+            "name": "Monday",
+            "count": 3
+        },
+        {
+            "name": "Tuesday",
+            "count": 1
+        },
+        {
+            "name": "Wednesday",
+            "count": 3
+        },
+        {
+            "name": "Thursday",
+            "count": 2
+        },
+        {
+            "name": "Friday",
+            "count": 2
+        },
+        {
+            "name": "Saturday",
+            "count": 2
+        },
+        {
+            "name": "Sunday",
+            "count": 2
+        }
+    ],
+    "budget_insights": [
+        {
+            "title": "Projected monthly spend",
+            "value": "Rs 5,631",
+            "detail": "At this pace you stay Rs 369 under your Rs 6,000 budget."
+        },
+        {
+            "title": "Delivery fee leakage",
+            "value": "Rs 513",
+            "detail": "2 smaller orders may be pushing up fee impact."
+        },
+        {
+            "title": "High-value orders",
+            "value": "2",
+            "detail": "Orders above Rs 450 are the easiest place to create savings."
+        },
+        {
+            "title": "Repeat concentration",
+            "value": "47%",
+            "detail": "Share of orders coming from your top 3 restaurants."
+        }
+    ],
+    "at_a_glance": [
+        {
+            "label": "Projected",
+            "value": "Rs 5,631",
+            "hint": "94% of budget"
+        },
+        {
+            "label": "Fees paid",
+            "value": "Rs 513",
+            "hint": "delivery leakage"
+        },
+        {
+            "label": "Peak time",
+            "value": "20:00",
+            "hint": "Dinner"
+        },
+        {
+            "label": "Weekly goal",
+            "value": "Rs 1,500",
+            "hint": "3 planned orders"
+        },
+        {
+            "label": "Top repeat",
+            "value": "Chicken Biryani",
+            "hint": "4x ordered"
+        },
+        {
+            "label": "Personality",
+            "value": "Dinner Decider",
+            "hint": "73% explore score"
+        }
+    ],
+    "budget_burn": {
+        "status": "on track",
+        "budget_used_percent": 94,
+        "monthly_budget": 6000,
+        "projected_monthly_spend": 5631,
+        "projected_budget_runout_day": 30,
+        "detail": "At your current pace, your Rs 6,000 budget would last about 30 days."
+    },
+    "hidden_costs": [
+        {
+            "name": "Food subtotal",
+            "amount": 5118,
+            "detail": "Estimated spend on items before delivery fees."
+        },
+        {
+            "name": "Delivery fees",
+            "amount": 513,
+            "detail": "Fees paid across orders in this period."
+        },
+        {
+            "name": "Dessert/drink add-ons",
+            "amount": 545,
+            "detail": "Estimated spend linked to dessert and drink items."
+        },
+        {
+            "name": "Rs 450+ orders",
+            "amount": 978,
+            "detail": "Spend from higher-value orders where swaps can save money."
+        }
+    ],
+    "swiggy_one_suggestion": {
+        "title": "Check Swiggy One savings",
+        "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing."
+    },
+    "habit_triggers": [
+        "Peak trigger: Monday around 20:00. Add a planned meal reminder 60-90 minutes earlier.",
+        "73% of your orders are dinner or late-night decisions.",
+        "27% of your orders happen on weekends.",
+        "Your strongest food pattern is protein-oriented, appearing in 11 orders."
+    ],
+    "weekly_goal": {
+        "title": "This week's goal",
+        "budget": 1500,
+        "current_pace": 1408,
+        "actions": [
+            "Keep Swiggy spend under Rs 1,500.",
+            "Limit restaurant orders to 3 planned orders.",
+            "Avoid unplanned dessert or drink add-ons twice this week.",
+            "Check delivery fee before checkout; prefer nearby options when fee is high."
+        ]
+    },
+    "savings_opportunities": [
+        {
+            "title": "Swap expensive repeats",
+            "amount": "Rs 1,200/month",
+            "detail": "Replace up to two Rs 450+ orders per week with good options under Rs 300."
+        },
+        {
+            "title": "Reduce dessert add-ons",
+            "amount": "Rs 270/period",
+            "detail": "Keep dessert as a planned treat instead of an automatic dinner add-on."
+        },
+        {
+            "title": "Lower delivery fee impact",
+            "amount": "Rs 128/period",
+            "detail": "Batch snack/cafe cravings or choose nearby restaurants when fee impact is high."
+        }
+    ],
+    "personal_badges": [
+        {
+            "name": "Dinner Decider",
+            "reason": "Your Swiggy usage is mostly evening decision support."
+        },
+        {
+            "name": "Fee Watcher",
+            "reason": "Rs 513 paid in delivery fees this period."
+        },
+        {
+            "name": "Biryani Loyalist",
+            "reason": "Biryani is your strongest cuisine pattern."
+        },
+        {
+            "name": "Add-on Drifter",
+            "reason": "Estimated Rs 545 linked to dessert or drink add-ons."
+        },
+        {
+            "name": "Premium Picker",
+            "reason": "2 orders crossed Rs 450."
+        }
+    ],
+    "food_personality": {
+        "name": "Dinner Decider",
+        "detail": "Your Swiggy usage is mostly evening decision support.",
+        "experimentation_score": 73,
+        "unique_restaurants": 11
+    },
+    "pattern_tags": [
+        {
+            "name": "protein-oriented",
+            "count": 11
+        },
+        {
+            "name": "rice-heavy",
+            "count": 8
+        },
+        {
+            "name": "drink",
+            "count": 4
+        },
+        {
+            "name": "fast-food",
+            "count": 3
+        },
+        {
+            "name": "dessert",
+            "count": 3
+        }
+    ],
+    "insights": [
+        "You placed 15 orders over 27 days and spent Rs 5,631.",
+        "Your average order value is Rs 375, with delivery fees averaging Rs 34.",
+        "Your strongest repeat pattern is Chicken Biryani, ordered 4 times.",
+        "Meghana Foods is your most repeated restaurant and accounts for Rs 2,047 of spend.",
+        "You order most often during dinner, which represents 10 of your orders.",
+        "Your peak ordering slot is around 20:00, and your busiest ordering day is Monday."
+    ],
+    "recommendations": [
+        "Create a 'Biryani craving' shortcut with one premium pick, one budget pick, and one lighter option.",
+        "Add a dinner budget guardrail, because most of your ordering happens when impulse choices are easiest.",
+        "Flag dessert add-ons after dinner orders and suggest a smaller portion when the user wants to save."
+    ],
+    "agent_summary": [
+        "Projected monthly spend is Rs 5,631 against a Rs 6,000 budget.",
+        "Projected spend uses 94% of the monthly budget.",
+        "Delivery fees account for Rs 513.",
+        "Top priority: Keep this month under control.",
+        "Next best action: Set this week's Swiggy cap.",
+        "Analysis confidence: Strong signal."
+    ],
+    "agent_recommendations": [
+        "Create a one-tap 'Biryani' shortlist with premium, budget, and lighter picks.",
+        "Prefer nearby restaurants or batch snack/cafe cravings when delivery fee impact is high.",
+        "Compare recent delivery fees against Swiggy One savings before subscribing.",
+        "Show a dessert/drink nudge only after the user confirms they want add-ons.",
+        "Use Rs 1,500 as this week's ordering cap."
+    ],
+    "agent_risks": [
+        "Delivery fee leakage",
+        "Impulse ordering window",
+        "Add-on spend risk",
+        "Membership savings check"
+    ],
+    "data_quality": {
         "status": "strong",
-        "detail": "The selected period covers 27 observed days."
-      },
-      {
-        "name": "Cost fields",
-        "status": "strong",
-        "detail": "Delivery fee data is present."
-      },
-      {
-        "name": "Nutrition estimate",
+        "score": 90,
+        "confidence_label": "Strong signal",
+        "summary": "Strong confidence based on 15 orders over 27 observed days.",
+        "checks": [
+            {
+                "name": "Order sample",
+                "status": "moderate",
+                "detail": "15 orders are available for this period."
+            },
+            {
+                "name": "History coverage",
+                "status": "strong",
+                "detail": "The selected period covers 27 observed days."
+            },
+            {
+                "name": "Cost fields",
+                "status": "strong",
+                "detail": "Delivery fee data is present."
+            },
+            {
+                "name": "Nutrition estimate",
+                "status": "estimated",
+                "detail": "Macro split is estimated from dish names, not verified restaurant nutrition."
+            }
+        ]
+    },
+    "subscription_value": {
+        "status": "worth checking",
+        "title": "Swiggy One may be worth checking",
+        "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
+        "evidence": [
+            "Delivery fees: Rs 513",
+            "Ordering pace: 3.9 orders/week"
+        ]
+    },
+    "nutrition_confidence": {
         "status": "estimated",
-        "detail": "Macro split is estimated from dish names, not verified restaurant nutrition."
-      }
-    ]
-  },
-  "prioritized_insights": [
-    {
-      "label": "Budget",
-      "title": "Keep this month under control",
-      "detail": "Projected spend is Rs 5,631 against a Rs 6,000 budget.",
-      "impact": "94% budget pace",
-      "confidence": "Strong signal",
-      "score": 96
+        "score": 45,
+        "summary": "Macro split is useful for pattern awareness, but it is estimated from dish names.",
+        "do_not_use_for": [
+            "medical advice",
+            "diagnosis",
+            "guaranteed weight loss",
+            "precise calorie tracking"
+        ]
     },
-    {
-      "label": "Fees",
-      "title": "Reduce invisible delivery leakage",
-      "detail": "Delivery fees account for Rs 513 in this period.",
-      "impact": "Immediate savings lever",
-      "confidence": "Strong signal",
-      "score": 90
+    "prioritized_insights": [
+        {
+            "label": "Budget",
+            "title": "Keep this month under control",
+            "detail": "Projected spend is Rs 5,631 against a Rs 6,000 budget.",
+            "impact": "94% budget pace",
+            "confidence": "Strong signal",
+            "score": 96
+        },
+        {
+            "label": "Fees",
+            "title": "Reduce invisible delivery leakage",
+            "detail": "Delivery fees account for Rs 513 in this period.",
+            "impact": "Immediate savings lever",
+            "confidence": "Strong signal",
+            "score": 90
+        },
+        {
+            "label": "Timing",
+            "title": "Plan around your strongest ordering window",
+            "detail": "Your peak pattern is Dinner around 20:00.",
+            "impact": "Better pre-order decisions",
+            "confidence": "Strong signal",
+            "score": 82
+        },
+        {
+            "label": "Membership",
+            "title": "Swiggy One may be worth checking",
+            "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
+            "impact": "Could reduce fee pressure",
+            "confidence": "Strong signal",
+            "score": 78
+        },
+        {
+            "label": "Goal",
+            "title": "Use one weekly cap instead of daily guilt",
+            "detail": "This week's suggested cap is Rs 1,500.",
+            "impact": "Simple behavior change",
+            "confidence": "Strong signal",
+            "score": 76
+        }
+    ],
+    "next_best_actions": [
+        {
+            "title": "Set this week's Swiggy cap",
+            "detail": "Use Rs 1,500 as the limit before placing more orders.",
+            "impact": "Budget control",
+            "confidence": "Strong signal"
+        },
+        {
+            "title": "Check Swiggy One before subscribing",
+            "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
+            "impact": "Fee savings check",
+            "confidence": "Strong signal"
+        },
+        {
+            "title": "Put a pause before peak-hour orders",
+            "detail": "Show the budget nudge before 20:00, your strongest ordering slot.",
+            "impact": "Impulse reduction",
+            "confidence": "Strong signal"
+        },
+        {
+            "title": "Compare repeat alternatives",
+            "detail": "When Meghana Foods appears, compare it with two cheaper similar options.",
+            "impact": "Repeat spend optimization",
+            "confidence": "Strong signal"
+        }
+    ],
+    "guardrails": {
+        "status": "passed",
+        "blocked_terms": [],
+        "checks": [
+            "No medical claims",
+            "No invented metrics",
+            "No hidden cart/order actions",
+            "Recommendations grounded in analytics payload",
+            "User consent required for MCP data access"
+        ]
     },
-    {
-      "label": "Timing",
-      "title": "Plan around your strongest ordering window",
-      "detail": "Your peak pattern is Dinner around 20:00.",
-      "impact": "Better pre-order decisions",
-      "confidence": "Strong signal",
-      "score": 82
-    },
-    {
-      "label": "Membership",
-      "title": "Swiggy One may be worth checking",
-      "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
-      "impact": "Could reduce fee pressure",
-      "confidence": "Strong signal",
-      "score": 78
-    },
-    {
-      "label": "Goal",
-      "title": "Use one weekly cap instead of daily guilt",
-      "detail": "This week's suggested cap is Rs 1,500.",
-      "impact": "Simple behavior change",
-      "confidence": "Strong signal",
-      "score": 76
+    "workflow_trace": [
+        {
+            "node": "ground_context",
+            "status": "grounded analytics payload"
+        },
+        {
+            "node": "data_quality_check",
+            "status": "scored analysis confidence"
+        },
+        {
+            "node": "spend_analysis",
+            "status": "computed spend risks"
+        },
+        {
+            "node": "budget_burn_analysis",
+            "status": "grounded budget burn rate"
+        },
+        {
+            "node": "hidden_cost_analysis",
+            "status": "mapped hidden costs"
+        },
+        {
+            "node": "subscription_value_check",
+            "status": "checked membership value"
+        },
+        {
+            "node": "habit_analysis",
+            "status": "identified behavior patterns"
+        },
+        {
+            "node": "nutrition_confidence_estimator",
+            "status": "qualified nutrition estimates"
+        },
+        {
+            "node": "goal_analysis",
+            "status": "prepared weekly goal"
+        },
+        {
+            "node": "risk_detection",
+            "status": "screened risk categories"
+        },
+        {
+            "node": "recommendation_drafter",
+            "status": "drafted grounded actions"
+        },
+        {
+            "node": "guardrail_review",
+            "status": "validated output safety"
+        },
+        {
+            "node": "insight_prioritizer",
+            "status": "ranked highest impact insights"
+        },
+        {
+            "node": "next_best_action_selector",
+            "status": "selected next best actions"
+        },
+        {
+            "node": "final_response",
+            "status": "assembled final agent output"
+        }
+    ],
+    "prompt_grounding": {
+        "system": "You are FoodLens, a Swiggy order-history insight agent.\nYour job is to turn consent-scoped order analytics into practical,\nuser-facing spending and food habit guidance.\n\nHard rules:\n  - Use only the numbers and facts provided in the analytics payload.\n  - Do not invent order counts, prices, restaurant names, cuisines, or dates.\n  - Do not make medical, diagnostic, or guaranteed health claims.\n  - Nutrition values are estimates from order metadata, not clinical advice.\n  - Keep recommendations practical, low-pressure, and reversible.\n  - Never suggest placing an order or changing a cart without explicit user confirmation.\n  - Treat Swiggy MCP data as consent-scoped user data.\n  - If a required value is absent, return null or an empty list instead of guessing.\n  - Output valid JSON only when an LLM is used for this node.\n",
+        "grounding": {
+            "period": "Last 1 month",
+            "period_days": 30,
+            "monthly_budget": 6000,
+            "order_count": 15,
+            "total_spend": 5631,
+            "average_order_value": 375,
+            "projected_monthly_spend": 5631,
+            "delivery_fee_total": 513,
+            "orders_per_week": 3.9,
+            "days_observed": 27,
+            "top_dish": "Chicken Biryani",
+            "top_restaurant": "Meghana Foods",
+            "top_cuisine": "Biryani",
+            "peak_meal_window": "Dinner",
+            "peak_hour": "20:00",
+            "peak_weekday": "Monday",
+            "food_personality": "Dinner Decider",
+            "budget_burn": {
+                "status": "on track",
+                "budget_used_percent": 94,
+                "monthly_budget": 6000,
+                "projected_monthly_spend": 5631,
+                "projected_budget_runout_day": 30,
+                "detail": "At your current pace, your Rs 6,000 budget would last about 30 days."
+            },
+            "hidden_costs": [
+                {
+                    "name": "Food subtotal",
+                    "amount": 5118,
+                    "detail": "Estimated spend on items before delivery fees."
+                },
+                {
+                    "name": "Delivery fees",
+                    "amount": 513,
+                    "detail": "Fees paid across orders in this period."
+                },
+                {
+                    "name": "Dessert/drink add-ons",
+                    "amount": 545,
+                    "detail": "Estimated spend linked to dessert and drink items."
+                },
+                {
+                    "name": "Rs 450+ orders",
+                    "amount": 978,
+                    "detail": "Spend from higher-value orders where swaps can save money."
+                }
+            ],
+            "weekly_goal": {
+                "title": "This week's goal",
+                "budget": 1500,
+                "current_pace": 1408,
+                "actions": [
+                    "Keep Swiggy spend under Rs 1,500.",
+                    "Limit restaurant orders to 3 planned orders.",
+                    "Avoid unplanned dessert or drink add-ons twice this week.",
+                    "Check delivery fee before checkout; prefer nearby options when fee is high."
+                ]
+            },
+            "swiggy_one_suggestion": {
+                "title": "Check Swiggy One savings",
+                "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing."
+            },
+            "personal_badges": [
+                {
+                    "name": "Dinner Decider",
+                    "reason": "Your Swiggy usage is mostly evening decision support."
+                },
+                {
+                    "name": "Fee Watcher",
+                    "reason": "Rs 513 paid in delivery fees this period."
+                },
+                {
+                    "name": "Biryani Loyalist",
+                    "reason": "Biryani is your strongest cuisine pattern."
+                },
+                {
+                    "name": "Add-on Drifter",
+                    "reason": "Estimated Rs 545 linked to dessert or drink add-ons."
+                },
+                {
+                    "name": "Premium Picker",
+                    "reason": "2 orders crossed Rs 450."
+                }
+            ],
+            "at_a_glance": [
+                {
+                    "label": "Projected",
+                    "value": "Rs 5,631",
+                    "hint": "94% of budget"
+                },
+                {
+                    "label": "Fees paid",
+                    "value": "Rs 513",
+                    "hint": "delivery leakage"
+                },
+                {
+                    "label": "Peak time",
+                    "value": "20:00",
+                    "hint": "Dinner"
+                },
+                {
+                    "label": "Weekly goal",
+                    "value": "Rs 1,500",
+                    "hint": "3 planned orders"
+                },
+                {
+                    "label": "Top repeat",
+                    "value": "Chicken Biryani",
+                    "hint": "4x ordered"
+                },
+                {
+                    "label": "Personality",
+                    "value": "Dinner Decider",
+                    "hint": "73% explore score"
+                }
+            ],
+            "macro_breakdown": [
+                {
+                    "name": "Protein",
+                    "count": 345,
+                    "unit": "g"
+                },
+                {
+                    "name": "Carbs",
+                    "count": 1111,
+                    "unit": "g"
+                },
+                {
+                    "name": "Fats",
+                    "count": 364,
+                    "unit": "g"
+                },
+                {
+                    "name": "Fiber",
+                    "count": 70,
+                    "unit": "g"
+                },
+                {
+                    "name": "Sugar",
+                    "count": 270,
+                    "unit": "g"
+                }
+            ],
+            "pattern_tags": [
+                "protein-oriented",
+                "rice-heavy",
+                "drink",
+                "fast-food",
+                "dessert"
+            ]
+        },
+        "node_prompts": {
+            "budget_burn_analysis": {
+                "instruction": "Evaluate whether the user is on pace, under pace, or over pace against\ntheir monthly budget. Use the grounded burn-rate fields only.\n",
+                "role": "Budget burn analyst",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Burn rate is a deterministic budget calculation."
+                },
+                "input_contract": {
+                    "source": "grounding.budget_burn",
+                    "required_fields": [
+                        "status",
+                        "budget_used_percent",
+                        "detail"
+                    ]
+                },
+                "behavior": [
+                    "Explain budget pace in plain language.",
+                    "Use the provided budget_used_percent exactly.",
+                    "Prefer short facts over long coaching."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "burn_findings"
+                    ],
+                    "json_schema_hint": "{\n  \"burn_findings\": [\n    \"Budget burn status is under pace/on pace/over pace.\",\n    \"Projected spend uses X% of the monthly budget.\",\n    \"One short detail from the burn-rate payload.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return exactly 3 findings.",
+                    "Do not recalculate burn percentage if already provided.",
+                    "Do not mention subscription savings here unless supplied inside budget_burn."
+                ],
+                "fallbacks": {
+                    "missing_burn_rate": "Return \"Budget burn detail is unavailable.\""
+                }
+            },
+            "data_quality_check": {
+                "instruction": "Score whether this analysis has enough evidence to be trusted.\nThe node should never create user-facing shame or overconfidence.\n",
+                "role": "Data quality analyst",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Signal confidence should be computed from order count, observed days, and available fields."
+                },
+                "input_contract": {
+                    "source": "grounding",
+                    "required_fields": [
+                        "order_count",
+                        "days_observed",
+                        "period_days",
+                        "delivery_fee_total",
+                        "macro_breakdown"
+                    ]
+                },
+                "behavior": [
+                    "Classify sample size and coverage as strong, moderate, or limited.",
+                    "Mark nutrition as estimated, never verified.",
+                    "Make weak signals explicit instead of hiding uncertainty."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "data_quality"
+                    ],
+                    "json_schema_hint": "{\n  \"data_quality\": {\n    \"status\": \"strong\",\n    \"score\": 86,\n    \"confidence_label\": \"Strong signal\",\n    \"summary\": \"Strong confidence based on X orders over Y observed days.\",\n    \"checks\": [\n      {\"name\": \"Order sample\", \"status\": \"strong\", \"detail\": \"...\"}\n    ]\n  }\n}\n"
+                },
+                "validation_rules": [
+                    "score must be between 0 and 100.",
+                    "status must be strong, moderate, or limited.",
+                    "Do not invent missing fields."
+                ],
+                "fallbacks": {
+                    "missing_history": "Return limited confidence with a clear reason."
+                }
+            },
+            "final_response": {
+                "instruction": "Assemble a concise final agent summary from grounded node findings.\nFavor high-signal facts and avoid long explanations.\n",
+                "role": "Final response assembler",
+                "llm_strategy": {
+                    "mode": "optional_llm",
+                    "reason": "LLM can compress and polish the final summary after guardrails pass."
+                },
+                "input_contract": {
+                    "source": [
+                        "spend_findings",
+                        "burn_findings",
+                        "hidden_cost_findings",
+                        "habit_findings",
+                        "risk_findings",
+                        "goal_findings",
+                        "guardrails",
+                        "prioritized_insights",
+                        "next_best_actions"
+                    ]
+                },
+                "behavior": [
+                    "Use only outputs that passed guardrail review.",
+                    "Keep the response compact enough for the dashboard top section.",
+                    "Lead with spend, budget pace, hidden cost, primary habit, risk, and weekly goal.",
+                    "Avoid repeating the same insight in multiple words."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "agent_summary"
+                    ],
+                    "json_schema_hint": "{\n  \"agent_summary\": [\n    \"Projected monthly spend is Rs X against a Rs Y budget.\",\n    \"Projected spend uses X% of the monthly budget.\",\n    \"Delivery fees account for Rs X.\",\n    \"Top priority: X.\",\n    \"Next best action: X.\",\n    \"Analysis confidence: X.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return exactly 6 summary lines.",
+                    "Each line must be one sentence.",
+                    "Do not include markdown, bullets, or labels."
+                ],
+                "fallbacks": {
+                    "guardrail_blocked": "Return a short blocked-output message and no recommendations."
+                }
+            },
+            "goal_analysis": {
+                "instruction": "Convert the user's monthly target into a practical weekly goal.\nKeep the result concrete: spend cap, planned-order count, add-on control,\nand delivery-fee check.\n",
+                "role": "Weekly goal planner",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Weekly target should be derived from the user's selected monthly budget."
+                },
+                "input_contract": {
+                    "source": "grounding.weekly_goal",
+                    "required_fields": [
+                        "budget",
+                        "current_pace",
+                        "actions"
+                    ]
+                },
+                "behavior": [
+                    "Convert the monthly budget into weekly behavior.",
+                    "Keep actions simple enough for the next seven days.",
+                    "Do not recommend extreme restriction or health outcomes.",
+                    "Preserve the user's autonomy."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "goal_findings"
+                    ],
+                    "json_schema_hint": "{\n  \"goal_findings\": [\n    \"Weekly budget goal is Rs X.\",\n    \"Current weekly pace is Rs Y.\",\n    \"Action 1 from payload.\",\n    \"Action 2 from payload.\",\n    \"Action 3 from payload.\",\n    \"Action 4 from payload.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 2 to 6 findings.",
+                    "Use at most four actions.",
+                    "Do not create a goal when monthly_budget is missing."
+                ],
+                "fallbacks": {
+                    "missing_goal": "Return \"Weekly goal is unavailable for this period.\""
+                }
+            },
+            "ground_context": {
+                "system": "You are FoodLens, a Swiggy order-history insight agent.\nYour job is to turn consent-scoped order analytics into practical,\nuser-facing spending and food habit guidance.\n\nHard rules:\n  - Use only the numbers and facts provided in the analytics payload.\n  - Do not invent order counts, prices, restaurant names, cuisines, or dates.\n  - Do not make medical, diagnostic, or guaranteed health claims.\n  - Nutrition values are estimates from order metadata, not clinical advice.\n  - Keep recommendations practical, low-pressure, and reversible.\n  - Never suggest placing an order or changing a cart without explicit user confirmation.\n  - Treat Swiggy MCP data as consent-scoped user data.\n  - If a required value is absent, return null or an empty list instead of guessing.\n  - Output valid JSON only when an LLM is used for this node.\n",
+                "instruction": "Extract a compact factual grounding pack from the analytics payload.\nInclude only verifiable facts: period, spend, projection, top dish,\ntop restaurant, top cuisine, timing peak, weekday peak, budget status,\ndelivery fee leakage, repeat concentration, budget burn rate, hidden costs,\nestimated nutrition, weekly goal, personal badges, Swiggy One savings prompt,\nand pattern tags.\n",
+                "role": "Grounding analyst",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Grounding must copy and normalize facts from analytics; an LLM should not invent base facts."
+                },
+                "input_contract": {
+                    "source": "analysis",
+                    "required_fields": [
+                        "period",
+                        "budget",
+                        "metrics",
+                        "top_dishes",
+                        "top_restaurants",
+                        "time_buckets",
+                        "hourly_breakdown",
+                        "weekday_breakdown",
+                        "budget_burn",
+                        "hidden_costs",
+                        "weekly_goal",
+                        "macro_breakdown"
+                    ]
+                },
+                "behavior": [
+                    "Copy facts directly from the payload.",
+                    "Normalize field names for downstream nodes.",
+                    "Preserve units such as Rs, percent, count, and grams.",
+                    "Do not summarize emotionally or judge the user."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "period",
+                        "period_days",
+                        "monthly_budget",
+                        "order_count",
+                        "total_spend",
+                        "average_order_value",
+                        "projected_monthly_spend",
+                        "delivery_fee_total",
+                        "orders_per_week",
+                        "days_observed",
+                        "top_dish",
+                        "top_restaurant",
+                        "top_cuisine",
+                        "peak_meal_window",
+                        "peak_hour",
+                        "peak_weekday",
+                        "food_personality",
+                        "budget_burn",
+                        "hidden_costs",
+                        "weekly_goal",
+                        "swiggy_one_suggestion",
+                        "personal_badges",
+                        "at_a_glance",
+                        "macro_breakdown",
+                        "pattern_tags"
+                    ],
+                    "json_schema_hint": "{\n  \"period\": \"string\",\n  \"period_days\": 30,\n  \"monthly_budget\": 0,\n  \"order_count\": 0,\n  \"total_spend\": 0,\n  \"average_order_value\": 0,\n  \"projected_monthly_spend\": 0,\n  \"delivery_fee_total\": 0,\n  \"orders_per_week\": 0,\n  \"days_observed\": 0,\n  \"top_dish\": \"string\",\n  \"top_restaurant\": \"string\",\n  \"top_cuisine\": \"string\",\n  \"peak_meal_window\": \"string\",\n  \"peak_hour\": \"string\",\n  \"peak_weekday\": \"string\",\n  \"food_personality\": \"string\",\n  \"budget_burn\": {},\n  \"hidden_costs\": [],\n  \"weekly_goal\": {},\n  \"swiggy_one_suggestion\": null,\n  \"personal_badges\": [],\n  \"at_a_glance\": [],\n  \"macro_breakdown\": [],\n  \"pattern_tags\": []\n}\n"
+                },
+                "fallbacks": {
+                    "missing_field": "Use null, 0, or [] depending on the expected type.",
+                    "low_data": "Keep the payload factual and mark weak signals as low confidence."
+                }
+            },
+            "guardrail_review": {
+                "instruction": "Review generated outputs for unsupported claims.\nBlock medical advice, invented facts, aggressive diet language,\nhidden ordering actions, or recommendations not grounded in the analytics payload.\n",
+                "role": "Safety and grounding reviewer",
+                "llm_strategy": {
+                    "mode": "optional_llm",
+                    "reason": "Deterministic checks run first; LLM can later act as a stricter second-pass reviewer."
+                },
+                "input_contract": {
+                    "source": [
+                        "spend_findings",
+                        "burn_findings",
+                        "hidden_cost_findings",
+                        "habit_findings",
+                        "goal_findings",
+                        "agent_recommendations",
+                        "grounding"
+                    ]
+                },
+                "behavior": [
+                    "Check every generated sentence against the grounding payload.",
+                    "Block medical, diagnostic, weight-loss, or guaranteed health claims.",
+                    "Block hidden cart changes, auto-ordering, auto-subscription, or payment actions.",
+                    "Block invented metrics, invented restaurants, invented dishes, and invented offers.",
+                    "Prefer returning a blocked status over passing unsafe content."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "guardrails"
+                    ],
+                    "json_schema_hint": "{\n  \"guardrails\": {\n    \"status\": \"passed\",\n    \"blocked_terms\": [],\n    \"checks\": [\n      \"No medical claims\",\n      \"No invented metrics\",\n      \"No hidden cart/order actions\",\n      \"Recommendations grounded in analytics payload\",\n      \"User consent required for MCP data access\"\n    ]\n  }\n}\n"
+                },
+                "validation_rules": [
+                    "status must be \"passed\" or \"blocked\".",
+                    "blocked_terms must be an array of strings.",
+                    "checks must list all checks that were performed."
+                ],
+                "fallbacks": {
+                    "uncertain_grounding": "Set status to \"blocked\" and include \"ungrounded output\" in blocked_terms."
+                }
+            },
+            "habit_analysis": {
+                "instruction": "Analyze behavioral patterns from ordering history.\nLook for timing triggers, repeat behavior, cuisine/dish concentration,\nlate-night/dinner-heavy decisions, personal badges, weekly goal behavior,\nand experimentation level.\n",
+                "role": "Habit analyst",
+                "llm_strategy": {
+                    "mode": "optional_llm",
+                    "reason": "LLM can improve behavioral phrasing while preserving grounded timing and repeat facts."
+                },
+                "input_contract": {
+                    "source": "grounding",
+                    "required_fields": [
+                        "peak_meal_window",
+                        "peak_hour",
+                        "peak_weekday",
+                        "top_restaurant",
+                        "top_dish",
+                        "food_personality",
+                        "pattern_tags",
+                        "personal_badges"
+                    ]
+                },
+                "behavior": [
+                    "Describe behavior as patterns, not personality flaws.",
+                    "Highlight repeat choices, timing peaks, and badges.",
+                    "Do not use medical, nutrition, or diet claims.",
+                    "Make weak signals sound tentative when order_count is low."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "habit_findings"
+                    ],
+                    "json_schema_hint": "{\n  \"habit_findings\": [\n    \"Primary ordering window is X around Y.\",\n    \"Busiest ordering day is X.\",\n    \"Most repeated restaurant is X; top dish is Y.\",\n    \"Food personality is X.\",\n    \"Pattern tags: a, b, c.\",\n    \"Personal badges: a, b, c.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 4 to 6 findings.",
+                    "Use only named dishes, restaurants, weekdays, tags, and badges from grounding."
+                ],
+                "fallbacks": {
+                    "missing_pattern": "Use \"Not enough data\" for that specific finding."
+                }
+            },
+            "hidden_cost_analysis": {
+                "instruction": "Identify non-obvious spending pressure: delivery fees, dessert/drink add-ons,\nhigher-value orders, and membership savings checks. Keep estimates clearly\nframed as estimates.\n",
+                "role": "Hidden cost analyst",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Hidden cost amounts should come from computed order data, not generation."
+                },
+                "input_contract": {
+                    "source": "grounding",
+                    "required_fields": [
+                        "hidden_costs",
+                        "swiggy_one_suggestion"
+                    ]
+                },
+                "behavior": [
+                    "Surface costs the user may not notice order by order.",
+                    "Clearly label estimated add-on costs as estimates.",
+                    "Mention Swiggy One only when the payload includes a savings suggestion.",
+                    "Avoid selling language; frame subscription as a comparison to check."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "hidden_cost_findings"
+                    ],
+                    "json_schema_hint": "{\n  \"hidden_cost_findings\": [\n    \"Delivery fees account for Rs X.\",\n    \"Dessert/drink add-ons are estimated at Rs X.\",\n    \"Rs 450+ orders account for Rs X.\",\n    \"Optional Swiggy One comparison detail.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 3 to 4 findings.",
+                    "Do not invent membership prices or exact savings.",
+                    "Use zero only when the payload says zero or the cost category is absent."
+                ],
+                "fallbacks": {
+                    "no_hidden_costs": "Return an empty hidden_cost_findings list."
+                }
+            },
+            "insight_prioritizer": {
+                "instruction": "Rank the most important insights for the user right now.\nOptimize for money impact, frequency, actionability, recency, and confidence.\n",
+                "role": "Insight prioritizer",
+                "llm_strategy": {
+                    "mode": "optional_llm",
+                    "reason": "LLM can improve ranking language, but must preserve deterministic facts and scores."
+                },
+                "input_contract": {
+                    "source": [
+                        "grounding",
+                        "data_quality",
+                        "spend_findings",
+                        "hidden_cost_findings",
+                        "habit_findings",
+                        "risk_findings",
+                        "subscription_value"
+                    ]
+                },
+                "behavior": [
+                    "Lead with the most useful user action, not the most interesting statistic.",
+                    "Keep each insight compact and decision-oriented.",
+                    "Preserve confidence labels.",
+                    "Do not invent new restaurants, prices, offers, or health claims."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "prioritized_insights"
+                    ],
+                    "json_schema_hint": "{\n  \"prioritized_insights\": [\n    {\n      \"label\": \"Budget\",\n      \"title\": \"Keep this month under control\",\n      \"detail\": \"Projected spend is Rs X against a Rs Y budget.\",\n      \"impact\": \"94% budget pace\",\n      \"confidence\": \"Strong signal\",\n      \"score\": 96\n    }\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 3 to 5 insights.",
+                    "score must be between 0 and 100.",
+                    "Use only grounded numbers."
+                ],
+                "fallbacks": {
+                    "low_data": "Prioritize data quality and low-risk planning actions."
+                }
+            },
+            "next_best_action_selector": {
+                "instruction": "Select the few actions that are most useful for the user's next ordering decision.\nThe output should feel practical enough to act on immediately.\n",
+                "role": "Next-best-action selector",
+                "llm_strategy": {
+                    "mode": "optional_llm",
+                    "reason": "LLM can make actions concise and user-friendly while preserving grounded constraints."
+                },
+                "input_contract": {
+                    "source": [
+                        "grounding",
+                        "prioritized_insights",
+                        "subscription_value",
+                        "data_quality"
+                    ]
+                },
+                "behavior": [
+                    "Return actions, not explanations.",
+                    "Each action should be useful even if the user does not order daily.",
+                    "Never auto-order, auto-subscribe, or edit cart."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "next_best_actions"
+                    ],
+                    "json_schema_hint": "{\n  \"next_best_actions\": [\n    {\n      \"title\": \"Set this week's Swiggy cap\",\n      \"detail\": \"Use Rs X as the limit before placing more orders.\",\n      \"impact\": \"Budget control\",\n      \"confidence\": \"Strong signal\"\n    }\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 3 to 4 actions.",
+                    "Each action must include title, detail, impact, and confidence."
+                ],
+                "fallbacks": {
+                    "low_data": "Suggest low-risk tracking and planning actions."
+                }
+            },
+            "nutrition_confidence_estimator": {
+                "instruction": "Qualify how much the user should trust the nutrition/macro breakdown.\nMake clear that these are estimates from item names.\n",
+                "role": "Nutrition confidence estimator",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "The node should constrain nutrition claims instead of generating health advice."
+                },
+                "input_contract": {
+                    "source": "grounding.macro_breakdown",
+                    "required_fields": [
+                        "macro_breakdown"
+                    ]
+                },
+                "behavior": [
+                    "Label macro data as estimated.",
+                    "Avoid calories, diagnoses, weight claims, or prescriptive diet guidance.",
+                    "Keep this as pattern awareness only."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "nutrition_confidence"
+                    ],
+                    "json_schema_hint": "{\n  \"nutrition_confidence\": {\n    \"status\": \"estimated\",\n    \"score\": 45,\n    \"summary\": \"Macro split is useful for pattern awareness, but estimated.\",\n    \"do_not_use_for\": [\"medical advice\", \"precise calorie tracking\"]\n  }\n}\n"
+                },
+                "validation_rules": [
+                    "status must be estimated or limited.",
+                    "score must be between 0 and 100."
+                ],
+                "fallbacks": {
+                    "missing_macros": "Return limited confidence."
+                }
+            },
+            "recommendation_drafter": {
+                "instruction": "Generate next-best actions for the user.\nEach recommendation must map to one of the grounded facts and should be useful\neven if the user does not order every day. Prefer concrete actions around\nweekly budget, delivery-fee checks, repeat alternatives, add-on control,\nand next-order guardrails.\n",
+                "role": "Recommendation drafter",
+                "llm_strategy": {
+                    "mode": "optional_llm",
+                    "reason": "LLM can improve recommendation wording, but every action must map to grounded facts."
+                },
+                "input_contract": {
+                    "source": [
+                        "grounding",
+                        "risk_findings",
+                        "spend_findings",
+                        "hidden_cost_findings",
+                        "goal_findings"
+                    ],
+                    "required_fields": [
+                        "top_cuisine",
+                        "top_restaurant",
+                        "peak_hour",
+                        "weekly_goal",
+                        "risk_findings"
+                    ]
+                },
+                "behavior": [
+                    "Produce direct user actions, not generic advice.",
+                    "Tie every recommendation to a grounded fact or detected risk.",
+                    {
+                        "Prefer useful nudges": "budget cap, cheaper repeat alternatives, delivery-fee check, add-on confirmation, Swiggy One comparison."
+                    },
+                    "Never say the agent will order food, edit cart, subscribe, or spend money automatically.",
+                    "Do not claim guaranteed savings unless the amount is provided by analytics."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "agent_recommendations"
+                    ],
+                    "json_schema_hint": "{\n  \"agent_recommendations\": [\n    \"Set a soft cap before 8 PM because that is the strongest ordering slot.\",\n    \"Create a one-tap 'Biryani' shortlist with premium, budget, and lighter picks.\",\n    \"Prefer nearby restaurants or batch snack/cafe cravings when delivery fee impact is high.\",\n    \"Compare recent delivery fees against Swiggy One savings before subscribing.\",\n    \"Use Rs X as this week's ordering cap.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 3 to 5 recommendations.",
+                    "Each item must be one sentence.",
+                    "Each item must be actionable without requiring daily ordering.",
+                    "Do not mention unsupported restaurants, dishes, prices, or offers."
+                ],
+                "fallbacks": {
+                    "no_risks": "Recommend one planning action and one discovery action from grounded favorites."
+                }
+            },
+            "risk_detection": {
+                "instruction": "Detect practical user risks from grounded facts only.\nAllowed categories include budget overrun, budget burn, delivery-fee leakage,\nimpulse ordering window, add-on spend, and membership savings check.\n",
+                "role": "Risk classifier",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Risk labels should follow explicit rules and allowed categories."
+                },
+                "input_contract": {
+                    "source": "grounding",
+                    "required_fields": [
+                        "monthly_budget",
+                        "projected_monthly_spend",
+                        "delivery_fee_total",
+                        "peak_meal_window",
+                        "pattern_tags",
+                        "budget_burn",
+                        "swiggy_one_suggestion"
+                    ]
+                },
+                "behavior": [
+                    "Classify only practical product risks, not health risks.",
+                    "Use the allowed categories exactly.",
+                    "Return \"No major risk detected for this period\" when no rule applies."
+                ],
+                "allowed_categories": [
+                    "Budget overrun risk",
+                    "Budget burn risk",
+                    "Delivery fee leakage",
+                    "Impulse ordering window",
+                    "Add-on spend risk",
+                    "Membership savings check",
+                    "No major risk detected for this period"
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "risk_findings"
+                    ],
+                    "json_schema_hint": "{\n  \"risk_findings\": [\n    \"Budget overrun risk\",\n    \"Delivery fee leakage\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return only strings from allowed_categories.",
+                    "Do not include severity unless a future schema adds it.",
+                    "Do not infer risks from missing data."
+                ],
+                "fallbacks": {
+                    "insufficient_data": "Return [\"No major risk detected for this period\"]."
+                }
+            },
+            "spend_analysis": {
+                "instruction": "Analyze the user's food spending.\nPrioritize projected monthly spend, delivery-fee leakage, high-value orders,\nbudget burn rate, hidden costs, Swiggy One savings prompt when applicable,\nand realistic savings actions. Do not shame the user.\n",
+                "role": "Spend analyst",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Spend calculations must remain exact and traceable to analytics."
+                },
+                "input_contract": {
+                    "source": "grounding",
+                    "required_fields": [
+                        "monthly_budget",
+                        "projected_monthly_spend",
+                        "total_spend",
+                        "average_order_value",
+                        "delivery_fee_total",
+                        "hidden_costs",
+                        "budget_burn"
+                    ]
+                },
+                "behavior": [
+                    "Compare projected monthly spend against the user's monthly budget.",
+                    "State whether the user is above, below, or close to budget.",
+                    "Mention delivery fee impact when available.",
+                    "Keep tone neutral and useful.",
+                    "Never imply the user is irresponsible or unhealthy."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "spend_findings"
+                    ],
+                    "json_schema_hint": "{\n  \"spend_findings\": [\n    \"Projected monthly spend is Rs X against a Rs Y budget.\",\n    \"Current pace is Rs Z above/below the user's monthly budget.\",\n    \"Total delivery-fee leakage in this period is Rs X.\",\n    \"Average order value is Rs X.\"\n  ]\n}\n"
+                },
+                "validation_rules": [
+                    "Return 3 to 5 findings.",
+                    "Every rupee amount must come from grounding or direct arithmetic on grounding.",
+                    "Do not recommend medical, diet, or weight-loss actions."
+                ],
+                "fallbacks": {
+                    "missing_budget": "Explain spend without budget comparison.",
+                    "low_data": "Say the pattern is based on limited order history."
+                }
+            },
+            "subscription_value_check": {
+                "instruction": "Decide whether a Swiggy One comparison is useful for the user.\nThis is a savings check, not a subscription recommendation.\n",
+                "role": "Subscription value analyst",
+                "llm_strategy": {
+                    "mode": "deterministic_only",
+                    "reason": "Subscription prompts must be based on fee totals and order frequency, not generated persuasion."
+                },
+                "input_contract": {
+                    "source": "grounding",
+                    "required_fields": [
+                        "delivery_fee_total",
+                        "orders_per_week",
+                        "swiggy_one_suggestion"
+                    ]
+                },
+                "behavior": [
+                    "Mention Swiggy One only as a comparison to check.",
+                    "Do not invent membership prices, offers, or guaranteed savings.",
+                    "Keep the result low-pressure and reversible."
+                ],
+                "output_contract": {
+                    "type": "object",
+                    "required_keys": [
+                        "subscription_value"
+                    ],
+                    "json_schema_hint": "{\n  \"subscription_value\": {\n    \"status\": \"worth checking\",\n    \"title\": \"Swiggy One may be worth checking\",\n    \"detail\": \"Compare fees against membership savings before subscribing.\",\n    \"evidence\": [\"Delivery fees: Rs X\", \"Ordering pace: Y orders/week\"]\n  }\n}\n"
+                },
+                "validation_rules": [
+                    "status must be worth checking, watch, or low priority.",
+                    "Do not recommend auto-subscription."
+                ],
+                "fallbacks": {
+                    "no_fee_data": "Return low priority and explain missing fee data."
+                }
+            }
+        }
     }
-  ],
-  "next_best_actions": [
-    {
-      "title": "Set this week's Swiggy cap",
-      "detail": "Use Rs 1,500 as the limit before placing more orders.",
-      "impact": "Budget control",
-      "confidence": "Strong signal"
-    },
-    {
-      "title": "Check Swiggy One before subscribing",
-      "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
-      "impact": "Fee savings check",
-      "confidence": "Strong signal"
-    },
-    {
-      "title": "Put a pause before peak-hour orders",
-      "detail": "Show the budget nudge before 20:00, your strongest ordering slot.",
-      "impact": "Impulse reduction",
-      "confidence": "Strong signal"
-    },
-    {
-      "title": "Compare repeat alternatives",
-      "detail": "When Meghana Foods appears, compare it with two cheaper similar options.",
-      "impact": "Repeat spend optimization",
-      "confidence": "Strong signal"
-    }
-  ],
-  "agent_summary": [
-    "Projected monthly spend is Rs 5,631 against a Rs 6,000 budget.",
-    "Projected spend uses 94% of the monthly budget.",
-    "Delivery fees account for Rs 513.",
-    "Top priority: Keep this month under control.",
-    "Next best action: Set this week's Swiggy cap.",
-    "Analysis confidence: Strong signal."
-  ],
-  "subscription_value": {
-    "status": "worth checking",
-    "title": "Swiggy One may be worth checking",
-    "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.",
-    "evidence": [
-      "Delivery fees: Rs 513",
-      "Ordering pace: 3.9 orders/week"
-    ]
-  },
-  "nutrition_confidence": {
-    "status": "estimated",
-    "score": 45,
-    "summary": "Macro split is useful for pattern awareness, but it is estimated from dish names.",
-    "do_not_use_for": [
-      "medical advice",
-      "diagnosis",
-      "guaranteed weight loss",
-      "precise calorie tracking"
-    ]
-  }
 }
