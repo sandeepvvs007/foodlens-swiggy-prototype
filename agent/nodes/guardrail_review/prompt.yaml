@@ -3,6 +3,9 @@ instruction: |
   Block medical advice, invented facts, aggressive diet language,
   hidden ordering actions, or recommendations not grounded in the analytics payload.
 role: Safety and grounding reviewer
+llm_strategy:
+  mode: optional_llm
+  reason: Deterministic checks run first; LLM can later act as a stricter second-pass reviewer.
 input_contract:
   source:
     - spend_findings

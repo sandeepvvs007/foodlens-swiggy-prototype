@@ -20,9 +20,8 @@
         <div>
           <h2>Your order history, decoded</h2>
           <p>
-            A local prototype that turns Swiggy order history into spending,
-            craving, timing, and reorder insights. This demo uses mocked data
-            until MCP staging access is available.
+            Spending, timing, fee, nutrition, and habit signals from Swiggy
+            order history, ranked into practical next actions.
           </p>
         </div>
         <div class="control-panel">
@@ -50,6 +49,27 @@
           </div>
           <div id="atAGlance" class="glance-grid"></div>
           <div id="quickActions" class="quick-actions"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article class="priority-panel">
+          <div class="section-toolbar">
+            <h3>Priority Actions</h3>
+            <span id="confidencePill" class="confidence-pill"></span>
+          </div>
+          <div id="priorityActions" class="priority-grid"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Highest Impact Insights</h3>
+          <div id="prioritizedInsights" class="impact-list"></div>
+        </article>
+        <article>
+          <h3>Trust & Value Checks</h3>
+          <div id="trustStack" class="trust-stack"></div>
         </article>
       </section>
 

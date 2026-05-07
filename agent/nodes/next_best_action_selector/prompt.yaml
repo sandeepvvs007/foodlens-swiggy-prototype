@@ -1,0 +1,37 @@
+instruction: |
+  Select the few actions that are most useful for the user's next ordering decision.
+  The output should feel practical enough to act on immediately.
+role: Next-best-action selector
+llm_strategy:
+  mode: optional_llm
+  reason: LLM can make actions concise and user-friendly while preserving grounded constraints.
+input_contract:
+  source:
+    - grounding
+    - prioritized_insights
+    - subscription_value
+    - data_quality
+behavior:
+  - Return actions, not explanations.
+  - Each action should be useful even if the user does not order daily.
+  - Never auto-order, auto-subscribe, or edit cart.
+output_contract:
+  type: object
+  required_keys:
+    - next_best_actions
+  json_schema_hint: |
+    {
+      "next_best_actions": [
+        {
+          "title": "Set this week's Swiggy cap",
+          "detail": "Use Rs X as the limit before placing more orders.",
+          "impact": "Budget control",
+          "confidence": "Strong signal"
+        }
+      ]
+    }
+validation_rules:
+  - Return 3 to 4 actions.
+  - Each action must include title, detail, impact, and confidence.
+fallbacks:
+  low_data: Suggest low-risk tracking and planning actions.

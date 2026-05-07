@@ -4,6 +4,9 @@ instruction: |
   budget burn rate, hidden costs, Swiggy One savings prompt when applicable,
   and realistic savings actions. Do not shame the user.
 role: Spend analyst
+llm_strategy:
+  mode: deterministic_only
+  reason: Spend calculations must remain exact and traceable to analytics.
 input_contract:
   source: grounding
   required_fields:

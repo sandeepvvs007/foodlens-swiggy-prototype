@@ -2,6 +2,9 @@ instruction: |
   Evaluate whether the user is on pace, under pace, or over pace against
   their monthly budget. Use the grounded burn-rate fields only.
 role: Budget burn analyst
+llm_strategy:
+  mode: deterministic_only
+  reason: Burn rate is a deterministic budget calculation.
 input_contract:
   source: grounding.budget_burn
   required_fields:

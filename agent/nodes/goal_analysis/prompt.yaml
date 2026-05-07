@@ -3,6 +3,9 @@ instruction: |
   Keep the result concrete: spend cap, planned-order count, add-on control,
   and delivery-fee check.
 role: Weekly goal planner
+llm_strategy:
+  mode: deterministic_only
+  reason: Weekly target should be derived from the user's selected monthly budget.
 input_contract:
   source: grounding.weekly_goal
   required_fields:

@@ -4,6 +4,9 @@ instruction: |
   late-night/dinner-heavy decisions, personal badges, weekly goal behavior,
   and experimentation level.
 role: Habit analyst
+llm_strategy:
+  mode: optional_llm
+  reason: LLM can improve behavioral phrasing while preserving grounded timing and repeat facts.
 input_contract:
   source: grounding
   required_fields:

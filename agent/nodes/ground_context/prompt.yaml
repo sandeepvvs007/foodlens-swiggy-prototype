@@ -21,6 +21,9 @@ instruction: |
   estimated nutrition, weekly goal, personal badges, Swiggy One savings prompt,
   and pattern tags.
 role: Grounding analyst
+llm_strategy:
+  mode: deterministic_only
+  reason: Grounding must copy and normalize facts from analytics; an LLM should not invent base facts.
 input_contract:
   source: analysis
   required_fields:
@@ -45,6 +48,7 @@ output_contract:
   type: object
   required_keys:
     - period
+    - period_days
     - monthly_budget
     - order_count
     - total_spend
@@ -52,6 +56,7 @@ output_contract:
     - projected_monthly_spend
     - delivery_fee_total
     - orders_per_week
+    - days_observed
     - top_dish
     - top_restaurant
     - top_cuisine
@@ -70,6 +75,7 @@ output_contract:
   json_schema_hint: |
     {
       "period": "string",
+      "period_days": 30,
       "monthly_budget": 0,
       "order_count": 0,
       "total_spend": 0,
@@ -77,6 +83,7 @@ output_contract:
       "projected_monthly_spend": 0,
       "delivery_fee_total": 0,
       "orders_per_week": 0,
+      "days_observed": 0,
       "top_dish": "string",
       "top_restaurant": "string",
       "top_cuisine": "string",

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -15,7 +15,7 @@ def guardrail_review(state: FoodLensState) -> FoodLensState:
         + state.get("agent_recommendations", [])
     ).lower()
     blocked = [term for term in blocked_terms if term in generated_text]
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "guardrail_review",
         "validated output safety",

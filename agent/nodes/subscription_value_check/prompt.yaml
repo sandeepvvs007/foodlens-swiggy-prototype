@@ -1,0 +1,35 @@
+instruction: |
+  Decide whether a Swiggy One comparison is useful for the user.
+  This is a savings check, not a subscription recommendation.
+role: Subscription value analyst
+llm_strategy:
+  mode: deterministic_only
+  reason: Subscription prompts must be based on fee totals and order frequency, not generated persuasion.
+input_contract:
+  source: grounding
+  required_fields:
+    - delivery_fee_total
+    - orders_per_week
+    - swiggy_one_suggestion
+behavior:
+  - Mention Swiggy One only as a comparison to check.
+  - Do not invent membership prices, offers, or guaranteed savings.
+  - Keep the result low-pressure and reversible.
+output_contract:
+  type: object
+  required_keys:
+    - subscription_value
+  json_schema_hint: |
+    {
+      "subscription_value": {
+        "status": "worth checking",
+        "title": "Swiggy One may be worth checking",
+        "detail": "Compare fees against membership savings before subscribing.",
+        "evidence": ["Delivery fees: Rs X", "Ordering pace: Y orders/week"]
+      }
+    }
+validation_rules:
+  - status must be worth checking, watch, or low priority.
+  - Do not recommend auto-subscription.
+fallbacks:
+  no_fee_data: Return low priority and explain missing fee data.

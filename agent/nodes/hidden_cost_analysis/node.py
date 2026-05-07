@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -17,7 +17,7 @@ def hidden_cost_analysis(state: FoodLensState) -> FoodLensState:
     suggestion = state["grounding"].get("swiggy_one_suggestion")
     if suggestion:
         findings.append(suggestion.get("detail", "Swiggy One savings check is applicable."))
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "hidden_cost_analysis",
         "mapped hidden costs",

@@ -95,6 +95,71 @@ function renderAtAGlance(items, swiggyOneSuggestion) {
     .join("");
 }
 
+function renderPriorityActions(actions) {
+  const container = document.querySelector("#priorityActions");
+  if (!actions || !actions.length) {
+    container.innerHTML = `<p class="empty-state">Not enough signal for priority actions.</p>`;
+    return;
+  }
+  container.innerHTML = actions
+    .map((action, index) => `
+      <div class="action-card">
+        <span>${index + 1}</span>
+        <strong>${action.title}</strong>
+        <p>${action.detail}</p>
+        <div>
+          <em>${action.impact}</em>
+          <small>${action.confidence}</small>
+        </div>
+      </div>
+    `)
+    .join("");
+}
+
+function renderPrioritizedInsights(insights) {
+  const container = document.querySelector("#prioritizedInsights");
+  if (!insights || !insights.length) {
+    container.innerHTML = `<p class="empty-state">No ranked insights for this period.</p>`;
+    return;
+  }
+  container.innerHTML = insights
+    .map((insight) => `
+      <div class="impact-row">
+        <span>${insight.label}</span>
+        <div>
+          <strong>${insight.title}</strong>
+          <p>${insight.detail}</p>
+        </div>
+        <em>${insight.impact}</em>
+      </div>
+    `)
+    .join("");
+}
+
+function renderTrustStack(data) {
+  const quality = data.data_quality || {};
+  const subscription = data.subscription_value || {};
+  const nutrition = data.nutrition_confidence || {};
+  document.querySelector("#confidencePill").textContent = quality.confidence_label || "Signal check";
+  document.querySelector("#trustStack").innerHTML = `
+    <div class="trust-card">
+      <span>Analysis confidence</span>
+      <strong>${quality.score || 0}/100 · ${quality.status || "unknown"}</strong>
+      <p>${quality.summary || "Signal quality is unavailable."}</p>
+    </div>
+    <div class="trust-card">
+      <span>Subscription value</span>
+      <strong>${subscription.title || "Membership check unavailable"}</strong>
+      <p>${subscription.detail || "No subscription signal for this period."}</p>
+    </div>
+    <div class="trust-card">
+      <span>Nutrition confidence</span>
+      <strong>${nutrition.status || "unknown"} · ${nutrition.score || 0}/100</strong>
+      <p>${nutrition.summary || "Nutrition estimates are unavailable."}</p>
+    </div>
+  `;
+}
+
 function renderPersonalBadges(badges) {
   document.querySelector("#personalBadges").innerHTML = badges
     .map((badge) => `
@@ -110,13 +175,13 @@ function renderBudgetBurn(burn) {
   const percent = Math.min(burn.budget_used_percent || 0, 100);
   document.querySelector("#budgetBurn").innerHTML = `
     <div class="burn-header">
-      <strong>${burn.budget_used_percent}%</strong>
-      <span>${burn.status}</span>
+      <strong>${burn.budget_used_percent || 0}%</strong>
+      <span>${burn.status || "unknown"}</span>
     </div>
     <div class="burn-track">
       <div style="width: ${percent}%"></div>
     </div>
-    <p>${burn.detail}</p>
+    <p>${burn.detail || "Budget burn signal is unavailable for this period."}</p>
     <div class="burn-meta">
       <span>Budget ${rupees.format(burn.monthly_budget || 0)}</span>
       <span>Projected ${rupees.format(burn.projected_monthly_spend || 0)}</span>
@@ -165,20 +230,21 @@ function renderHiddenCosts(costs, swiggyOneSuggestion) {
 }
 
 function renderFoodPersonality(personality, tags) {
-  const tagMarkup = tags
+  const safePersonality = personality || {};
+  const tagMarkup = (tags || [])
     .map((tag) => `<span>${tag.name} · ${tag.count}x</span>`)
     .join("");
   document.querySelector("#foodPersonality").innerHTML = `
-    <strong>${personality.name}</strong>
-    <p>${personality.detail}</p>
+    <strong>${safePersonality.name || "Not enough signal"}</strong>
+    <p>${safePersonality.detail || "More orders are needed to classify a food personality."}</p>
     <div class="score-line">
       <span>Experimentation score</span>
-      <em>${personality.experimentation_score}%</em>
+      <em>${safePersonality.experimentation_score || 0}%</em>
     </div>
     <div class="score-track">
-      <div style="width: ${personality.experimentation_score}%"></div>
+      <div style="width: ${safePersonality.experimentation_score || 0}%"></div>
     </div>
-    <p>${personality.unique_restaurants} unique restaurants in this period.</p>
+    <p>${safePersonality.unique_restaurants || 0} unique restaurants in this period.</p>
     <div class="tag-list">${tagMarkup}</div>
   `;
 }
@@ -296,6 +362,9 @@ async function loadAnalysis() {
   const data = await response.json();
   currentAnalysis = data;
   renderAtAGlance(data.at_a_glance || [], data.swiggy_one_suggestion);
+  renderPriorityActions(data.next_best_actions || []);
+  renderPrioritizedInsights(data.prioritized_insights || []);
+  renderTrustStack(data);
   renderMetrics(data.metrics);
   renderInsightCards("#budgetInsights", data.budget_insights);
   renderBudgetBurn(data.budget_burn || {});

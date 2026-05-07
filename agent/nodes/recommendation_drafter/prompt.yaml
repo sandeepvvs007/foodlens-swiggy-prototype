@@ -5,6 +5,9 @@ instruction: |
   weekly budget, delivery-fee checks, repeat alternatives, add-on control,
   and next-order guardrails.
 role: Recommendation drafter
+llm_strategy:
+  mode: optional_llm
+  reason: LLM can improve recommendation wording, but every action must map to grounded facts.
 input_contract:
   source:
     - grounding

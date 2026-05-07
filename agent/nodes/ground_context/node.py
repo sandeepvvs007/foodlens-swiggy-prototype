@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from agent.contracts import validate_output_contract
+from agent.llm_client import run_optional_llm_node
 from agent.prompt_loader import load_all_prompts
 from agent.state import FoodLensState
 from agent.utils import first, metric, trace
@@ -11,6 +12,7 @@ def ground_context(state: FoodLensState) -> FoodLensState:
     prompts = load_all_prompts()
     grounding = {
         "period": analysis.get("period", {}).get("label", "Selected period"),
+        "period_days": analysis.get("period", {}).get("days"),
         "monthly_budget": analysis.get("budget", {}).get("monthly_budget", 0),
         "order_count": metric(analysis, "order_count"),
         "total_spend": metric(analysis, "total_spend"),
@@ -18,6 +20,7 @@ def ground_context(state: FoodLensState) -> FoodLensState:
         "projected_monthly_spend": metric(analysis, "projected_monthly_spend"),
         "delivery_fee_total": metric(analysis, "delivery_fee_total"),
         "orders_per_week": metric(analysis, "orders_per_week"),
+        "days_observed": metric(analysis, "days_observed"),
         "top_dish": first(analysis.get("top_dishes", [])),
         "top_restaurant": first(analysis.get("top_restaurants", [])),
         "top_cuisine": first(analysis.get("top_cuisines", [])),
@@ -46,6 +49,7 @@ def ground_context(state: FoodLensState) -> FoodLensState:
         "macro_breakdown": analysis.get("macro_breakdown", []),
         "pattern_tags": [item["name"] for item in analysis.get("pattern_tags", [])],
     }
+    grounding = run_optional_llm_node("ground_context", {**state, "prompts": prompts, "grounding": grounding}, grounding)
     validate_output_contract("ground_context", prompts, grounding)
     return {
         **state,

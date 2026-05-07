@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -18,7 +18,7 @@ def spend_analysis(state: FoodLensState) -> FoodLensState:
         findings.insert(1, f"Current pace is Rs {delta:,} above the user's monthly budget.")
     else:
         findings.insert(1, f"Current pace is Rs {abs(delta):,} below the user's monthly budget.")
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "spend_analysis",
         "computed spend risks",

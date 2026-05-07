@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -11,7 +11,7 @@ def goal_analysis(state: FoodLensState) -> FoodLensState:
         f"Current weekly pace is Rs {goal.get('current_pace', 0):,}.",
     ]
     findings.extend(goal.get("actions", [])[:4])
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "goal_analysis",
         "prepared weekly goal",

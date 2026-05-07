@@ -3,6 +3,9 @@ instruction: |
   higher-value orders, and membership savings checks. Keep estimates clearly
   framed as estimates.
 role: Hidden cost analyst
+llm_strategy:
+  mode: deterministic_only
+  reason: Hidden cost amounts should come from computed order data, not generation.
 input_contract:
   source: grounding
   required_fields:

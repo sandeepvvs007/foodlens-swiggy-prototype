@@ -1,0 +1,44 @@
+instruction: |
+  Rank the most important insights for the user right now.
+  Optimize for money impact, frequency, actionability, recency, and confidence.
+role: Insight prioritizer
+llm_strategy:
+  mode: optional_llm
+  reason: LLM can improve ranking language, but must preserve deterministic facts and scores.
+input_contract:
+  source:
+    - grounding
+    - data_quality
+    - spend_findings
+    - hidden_cost_findings
+    - habit_findings
+    - risk_findings
+    - subscription_value
+behavior:
+  - Lead with the most useful user action, not the most interesting statistic.
+  - Keep each insight compact and decision-oriented.
+  - Preserve confidence labels.
+  - Do not invent new restaurants, prices, offers, or health claims.
+output_contract:
+  type: object
+  required_keys:
+    - prioritized_insights
+  json_schema_hint: |
+    {
+      "prioritized_insights": [
+        {
+          "label": "Budget",
+          "title": "Keep this month under control",
+          "detail": "Projected spend is Rs X against a Rs Y budget.",
+          "impact": "94% budget pace",
+          "confidence": "Strong signal",
+          "score": 96
+        }
+      ]
+    }
+validation_rules:
+  - Return 3 to 5 insights.
+  - score must be between 0 and 100.
+  - Use only grounded numbers.
+fallbacks:
+  low_data: Prioritize data quality and low-risk planning actions.

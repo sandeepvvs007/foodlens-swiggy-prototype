@@ -46,6 +46,11 @@ def llm_enabled() -> bool:
     return os.getenv("FOODLENS_ENABLE_LLM", "").strip().lower() in {"1", "true", "yes"}
 
 
+def llm_strategy_for(node_name: str, state: FoodLensState) -> dict[str, Any]:
+    prompt = state.get("prompts", {}).get(node_name, {})
+    return prompt.get("llm_strategy", {"mode": "deterministic_only"})
+
+
 def get_llm_provider() -> LLMProvider:
     if not llm_enabled():
         return DisabledLLMProvider()
@@ -69,6 +74,11 @@ def build_node_messages(node_name: str, state: FoodLensState, deterministic_outp
         "habit_findings": state.get("habit_findings", []),
         "goal_findings": state.get("goal_findings", []),
         "agent_recommendations": state.get("agent_recommendations", []),
+        "prioritized_insights": state.get("prioritized_insights", []),
+        "next_best_actions": state.get("next_best_actions", []),
+        "data_quality": state.get("data_quality", {}),
+        "subscription_value": state.get("subscription_value", {}),
+        "nutrition_confidence": state.get("nutrition_confidence", {}),
         "deterministic_output": deterministic_output,
     }
     return [
@@ -95,6 +105,9 @@ def run_optional_llm_node(
     state: FoodLensState,
     deterministic_output: dict[str, Any],
 ) -> dict[str, Any]:
+    strategy = llm_strategy_for(node_name, state)
+    if strategy.get("mode") == "deterministic_only":
+        return deterministic_output
     if not llm_enabled():
         return deterministic_output
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -17,7 +17,7 @@ def habit_analysis(state: FoodLensState) -> FoodLensState:
     badges = [badge.get("name", "") for badge in grounding.get("personal_badges", [])]
     if badges:
         findings.append(f"Personal badges: {', '.join(badges[:5])}.")
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "habit_analysis",
         "identified behavior patterns",

@@ -1,0 +1,41 @@
+instruction: |
+  Score whether this analysis has enough evidence to be trusted.
+  The node should never create user-facing shame or overconfidence.
+role: Data quality analyst
+llm_strategy:
+  mode: deterministic_only
+  reason: Signal confidence should be computed from order count, observed days, and available fields.
+input_contract:
+  source: grounding
+  required_fields:
+    - order_count
+    - days_observed
+    - period_days
+    - delivery_fee_total
+    - macro_breakdown
+behavior:
+  - Classify sample size and coverage as strong, moderate, or limited.
+  - Mark nutrition as estimated, never verified.
+  - Make weak signals explicit instead of hiding uncertainty.
+output_contract:
+  type: object
+  required_keys:
+    - data_quality
+  json_schema_hint: |
+    {
+      "data_quality": {
+        "status": "strong",
+        "score": 86,
+        "confidence_label": "Strong signal",
+        "summary": "Strong confidence based on X orders over Y observed days.",
+        "checks": [
+          {"name": "Order sample", "status": "strong", "detail": "..."}
+        ]
+      }
+    }
+validation_rules:
+  - score must be between 0 and 100.
+  - status must be strong, moderate, or limited.
+  - Do not invent missing fields.
+fallbacks:
+  missing_history: Return limited confidence with a clear reason.

@@ -2,6 +2,9 @@ instruction: |
   Assemble a concise final agent summary from grounded node findings.
   Favor high-signal facts and avoid long explanations.
 role: Final response assembler
+llm_strategy:
+  mode: optional_llm
+  reason: LLM can compress and polish the final summary after guardrails pass.
 input_contract:
   source:
     - spend_findings
@@ -11,6 +14,8 @@ input_contract:
     - risk_findings
     - goal_findings
     - guardrails
+    - prioritized_insights
+    - next_best_actions
 behavior:
   - Use only outputs that passed guardrail review.
   - Keep the response compact enough for the dashboard top section.
@@ -26,9 +31,9 @@ output_contract:
         "Projected monthly spend is Rs X against a Rs Y budget.",
         "Projected spend uses X% of the monthly budget.",
         "Delivery fees account for Rs X.",
-        "Primary ordering window is X around Y.",
-        "Main risks: A, B, C.",
-        "Weekly budget goal is Rs X."
+        "Top priority: X.",
+        "Next best action: X.",
+        "Analysis confidence: X."
       ]
     }
 validation_rules:

@@ -3,6 +3,9 @@ instruction: |
   Allowed categories include budget overrun, budget burn, delivery-fee leakage,
   impulse ordering window, add-on spend, and membership savings check.
 role: Risk classifier
+llm_strategy:
+  mode: deterministic_only
+  reason: Risk labels should follow explicit rules and allowed categories.
 input_contract:
   source: grounding
   required_fields:

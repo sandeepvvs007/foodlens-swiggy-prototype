@@ -1,0 +1,33 @@
+instruction: |
+  Qualify how much the user should trust the nutrition/macro breakdown.
+  Make clear that these are estimates from item names.
+role: Nutrition confidence estimator
+llm_strategy:
+  mode: deterministic_only
+  reason: The node should constrain nutrition claims instead of generating health advice.
+input_contract:
+  source: grounding.macro_breakdown
+  required_fields:
+    - macro_breakdown
+behavior:
+  - Label macro data as estimated.
+  - Avoid calories, diagnoses, weight claims, or prescriptive diet guidance.
+  - Keep this as pattern awareness only.
+output_contract:
+  type: object
+  required_keys:
+    - nutrition_confidence
+  json_schema_hint: |
+    {
+      "nutrition_confidence": {
+        "status": "estimated",
+        "score": 45,
+        "summary": "Macro split is useful for pattern awareness, but estimated.",
+        "do_not_use_for": ["medical advice", "precise calorie tracking"]
+      }
+    }
+validation_rules:
+  - status must be estimated or limited.
+  - score must be between 0 and 100.
+fallbacks:
+  missing_macros: Return limited confidence.

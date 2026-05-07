@@ -286,6 +286,129 @@ input {
   padding: 8px 11px;
 }
 
+.priority-panel {
+  border-color: #f6c186;
+}
+
+.confidence-pill {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 8px 10px;
+  text-transform: uppercase;
+}
+
+.priority-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.action-card {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  min-height: 190px;
+  padding: 16px;
+}
+
+.action-card > span {
+  align-items: center;
+  background: var(--swiggy);
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.action-card strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.18;
+}
+
+.action-card p,
+.impact-row p,
+.trust-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.action-card div {
+  align-items: start;
+  display: grid;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.action-card em,
+.impact-row em {
+  color: var(--green);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.action-card small {
+  color: #9a4a08;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.impact-list,
+.trust-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.impact-row {
+  align-items: start;
+  border-top: 1px solid #eef1f6;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 84px 1fr auto;
+  padding-top: 12px;
+}
+
+.impact-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.impact-row > span,
+.trust-card span {
+  color: var(--swiggy);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.impact-row strong,
+.trust-card strong {
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.trust-card {
+  background: #f8fafc;
+  border: 1px solid #e5eaf2;
+  border-radius: 8px;
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+}
+
 .badge-grid {
   display: grid;
   gap: 12px;
@@ -782,7 +905,8 @@ input {
   }
 
   .glance-grid,
-  .badge-grid {
+  .badge-grid,
+  .priority-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -807,7 +931,12 @@ input {
   }
 
   .glance-grid,
-  .badge-grid {
+  .badge-grid,
+  .priority-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-row {
     grid-template-columns: 1fr;
   }
 

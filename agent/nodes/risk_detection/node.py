@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from agent.contracts import merge_contract_output
+from agent.contracts import merge_structured_node_output
 from agent.state import FoodLensState
 
 
@@ -21,7 +21,7 @@ def risk_detection(state: FoodLensState) -> FoodLensState:
         risks.append("Membership savings check")
     if not risks:
         risks.append("No major risk detected for this period")
-    return merge_contract_output(
+    return merge_structured_node_output(
         state,
         "risk_detection",
         "screened risk categories",
