@@ -358,8 +358,7 @@ function renderColumnChart(selector, items, options = {}) {
 async function loadAnalysis() {
   const period = document.querySelector("#periodSelector").value;
   const budget = document.querySelector("#budgetInput").value || "6000";
-  const response = await fetch(`/api/analysis?period=${period}&budget=${budget}`);
-  const data = await response.json();
+  const data = window.FOODLENS_SAMPLE_DATA || await fetch(`/api/analysis?period=${period}&budget=${budget}`).then((response) => response.json());
   currentAnalysis = data;
   renderAtAGlance(data.at_a_glance || [], data.swiggy_one_suggestion);
   renderPriorityActions(data.next_best_actions || []);

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FoodLens Sample Analysis</title>
+    <link rel="stylesheet" href="static/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Swiggy MCP prototype</p>
+        <h1>FoodLens</h1>
+      </div>
+      <button id="refreshButton">Refresh analysis</button>
+    </header>
+
+    <main>
+      <section class="summary">
+        <div>
+          <h2>Your order history, decoded</h2>
+          <p>
+            Spending, timing, fee, nutrition, and habit signals from Swiggy
+            order history, ranked into practical next actions.
+          </p>
+        </div>
+        <div class="control-panel">
+          <label>
+            <span>Period</span>
+            <select id="periodSelector">
+              <option value="7">Last 7 days</option>
+              <option value="14">Last 2 weeks</option>
+              <option value="30" selected>Last 1 month</option>
+              <option value="120">Last 4 months</option>
+              <option value="180">Last 6 months</option>
+            </select>
+          </label>
+          <label>
+            <span>Monthly budget</span>
+            <input id="budgetInput" type="number" min="1000" step="500" value="6000">
+          </label>
+        </div>
+      </section>
+
+      <section class="single-panel">
+        <article>
+          <div class="section-toolbar">
+            <h3>At a Glance</h3>
+          </div>
+          <div id="atAGlance" class="glance-grid"></div>
+          <div id="quickActions" class="quick-actions"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article class="priority-panel">
+          <div class="section-toolbar">
+            <h3>Priority Actions</h3>
+            <span id="confidencePill" class="confidence-pill"></span>
+          </div>
+          <div id="priorityActions" class="priority-grid"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Highest Impact Insights</h3>
+          <div id="prioritizedInsights" class="impact-list"></div>
+        </article>
+        <article>
+          <h3>Trust & Value Checks</h3>
+          <div id="trustStack" class="trust-stack"></div>
+        </article>
+      </section>
+
+      <section class="ranking-panel">
+        <article>
+          <div class="section-toolbar">
+            <h3>Top Food Patterns</h3>
+            <label>
+              <span>Show</span>
+              <select id="rankingSelector">
+                <option value="top_dishes">Top dishes</option>
+                <option value="top_restaurants">Top restaurants</option>
+                <option value="macro_breakdown">Estimated nutrition</option>
+              </select>
+            </label>
+          </div>
+          <div id="selectedRanking" class="pie-layout"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Meal Window Pattern</h3>
+          <div id="timeBuckets" class="bars"></div>
+        </article>
+        <article>
+          <h3>Weekday Ordering Graph</h3>
+          <div id="weekdayBreakdown" class="column-chart weekday-chart"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article>
+          <h3>Hourly Ordering Graph</h3>
+          <div id="hourlyBreakdown" class="column-chart"></div>
+        </article>
+      </section>
+
+      <section class="metrics" id="metrics"></section>
+
+      <section class="grid">
+        <article>
+          <h3>Budget & Projection</h3>
+          <div id="budgetInsights" class="insight-cards"></div>
+        </article>
+        <article>
+          <h3>Food Personality</h3>
+          <div id="foodPersonality" class="personality-card"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article>
+          <h3>Personal Badges</h3>
+          <div id="personalBadges" class="badge-grid"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Budget Burn Rate</h3>
+          <div id="budgetBurn" class="burn-card"></div>
+        </article>
+        <article>
+          <h3>This Week's Goal</h3>
+          <div id="weeklyGoal" class="weekly-goal"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Agent Summary</h3>
+          <ul id="insights" class="text-list"></ul>
+        </article>
+        <article>
+          <h3>Recommendations</h3>
+          <ul id="recommendations" class="text-list"></ul>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article>
+          <h3>Savings Simulation</h3>
+          <div id="savingsOpportunities" class="savings-list"></div>
+        </article>
+        <article>
+          <h3>Hidden Cost Breakdown</h3>
+          <div id="hiddenCosts" class="hidden-costs"></div>
+          <div id="swiggyOneSuggestion"></div>
+        </article>
+      </section>
+
+      <section class="single-panel">
+        <article>
+          <h3>Habit Triggers</h3>
+          <ul id="habitTriggers" class="text-list"></ul>
+        </article>
+      </section>
+    </main>
+
+    <script type="application/json" id="sampleAnalysisData">
+{
+  "period": {
+    "label": "Last 1 month",
+    "days": 30
+  },
+  "budget": {
+    "monthly_budget": 6000
+  },
+  "metrics": {
+    "order_count": 15,
+    "total_spend": 5631,
+    "average_order_value": 375,
+    "average_delivery_fee": 34,
+    "projected_monthly_spend": 5631,
+    "delivery_fee_total": 513,
+    "days_observed": 27,
+    "orders_per_week": 3.9
+  },
+  "top_dishes": [
+    {"name": "Chicken Biryani", "count": 4},
+    {"name": "Raita", "count": 3},
+    {"name": "Mini Meals", "count": 1},
+    {"name": "Filter Coffee", "count": 1},
+    {"name": "Chicken Kebab Roll", "count": 1}
+  ],
+  "top_restaurants": [
+    {"name": "Meghana Foods", "count": 5},
+    {"name": "A2B", "count": 1},
+    {"name": "Empire Restaurant", "count": 1},
+    {"name": "Polar Bear", "count": 1},
+    {"name": "Third Wave Coffee", "count": 1}
+  ],
+  "macro_breakdown": [
+    {"name": "Protein", "count": 345, "unit": "g"},
+    {"name": "Carbs", "count": 1111, "unit": "g"},
+    {"name": "Fats", "count": 364, "unit": "g"},
+    {"name": "Fiber", "count": 70, "unit": "g"},
+    {"name": "Sugar", "count": 270, "unit": "g"}
+  ],
+  "time_buckets": [
+    {"name": "Dinner", "count": 10},
+    {"name": "Lunch", "count": 3},
+    {"name": "Morning", "count": 1},
+    {"name": "Late night", "count": 1}
+  ],
+  "hourly_breakdown": [
+    {"name": "09:00", "count": 1},
+    {"name": "13:00", "count": 2},
+    {"name": "14:00", "count": 1},
+    {"name": "19:00", "count": 1},
+    {"name": "20:00", "count": 5},
+    {"name": "21:00", "count": 3},
+    {"name": "22:00", "count": 1},
+    {"name": "23:00", "count": 1}
+  ],
+  "weekday_breakdown": [
+    {"name": "Monday", "count": 3},
+    {"name": "Tuesday", "count": 1},
+    {"name": "Wednesday", "count": 3},
+    {"name": "Thursday", "count": 2},
+    {"name": "Friday", "count": 2},
+    {"name": "Saturday", "count": 2},
+    {"name": "Sunday", "count": 2}
+  ],
+  "budget_insights": [
+    {"title": "Projected monthly spend", "value": "Rs 5,631", "detail": "At this pace you stay Rs 369 under your Rs 6,000 budget."},
+    {"title": "Delivery fee leakage", "value": "Rs 513", "detail": "2 smaller orders may be pushing up fee impact."},
+    {"title": "High-value orders", "value": "6", "detail": "Orders above Rs 450 are the easiest place to create savings."},
+    {"title": "Repeat concentration", "value": "47%", "detail": "Share of orders coming from your top 3 restaurants."}
+  ],
+  "at_a_glance": [
+    {"label": "Projected", "value": "Rs 5,631", "hint": "94% of budget"},
+    {"label": "Fees paid", "value": "Rs 513", "hint": "delivery leakage"},
+    {"label": "Peak time", "value": "20:00", "hint": "Dinner"},
+    {"label": "Weekly goal", "value": "Rs 1,500", "hint": "3 planned orders"},
+    {"label": "Top repeat", "value": "Chicken Biryani", "hint": "4x ordered"},
+    {"label": "Personality", "value": "Dinner Decider", "hint": "73% explore score"}
+  ],
+  "budget_burn": {
+    "status": "on track",
+    "budget_used_percent": 94,
+    "monthly_budget": 6000,
+    "projected_monthly_spend": 5631,
+    "projected_budget_runout_day": 30,
+    "detail": "At your current pace, your Rs 6,000 budget would last about 30 days."
+  },
+  "hidden_costs": [
+    {"name": "Food subtotal", "amount": 5118, "detail": "Estimated spend on items before delivery fees."},
+    {"name": "Delivery fees", "amount": 513, "detail": "Fees paid across orders in this period."},
+    {"name": "Dessert/drink add-ons", "amount": 443, "detail": "Estimated spend linked to dessert and drink items."},
+    {"name": "Rs 450+ orders", "amount": 3005, "detail": "Spend from higher-value orders where swaps can save money."}
+  ],
+  "swiggy_one_suggestion": {
+    "title": "Check Swiggy One savings",
+    "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing."
+  },
+  "habit_triggers": [
+    "Peak trigger: Wednesday around 20:00. Add a planned meal reminder 60-90 minutes earlier.",
+    "73% of your orders are dinner or late-night decisions.",
+    "27% of your orders happen on weekends.",
+    "Your strongest food pattern is protein-oriented, appearing in 11 orders."
+  ],
+  "weekly_goal": {
+    "title": "This week's goal",
+    "budget": 1500,
+    "current_pace": 1408,
+    "actions": [
+      "Keep Swiggy spend under Rs 1,500.",
+      "Limit restaurant orders to 3 planned orders.",
+      "Avoid unplanned dessert or drink add-ons twice this week.",
+      "Check delivery fee before checkout; prefer nearby options when fee is high."
+    ]
+  },
+  "savings_opportunities": [
+    {"title": "Swap expensive repeats", "amount": "Rs 1,200/month", "detail": "Replace up to two Rs 450+ orders per week with good options under Rs 300."},
+    {"title": "Reduce dessert add-ons", "amount": "Rs 270/period", "detail": "Keep dessert as a planned treat instead of an automatic dinner add-on."},
+    {"title": "Lower delivery fee impact", "amount": "Rs 128/period", "detail": "Batch snack/cafe cravings or choose nearby restaurants when fee impact is high."}
+  ],
+  "personal_badges": [
+    {"name": "Dinner Decider", "reason": "Your Swiggy usage is mostly evening decision support."},
+    {"name": "Fee Watcher", "reason": "Rs 513 paid in delivery fees this period."},
+    {"name": "Biryani Loyalist", "reason": "Biryani is your strongest cuisine pattern."},
+    {"name": "Add-on Drifter", "reason": "Estimated Rs 443 linked to dessert or drink add-ons."},
+    {"name": "Premium Picker", "reason": "6 orders crossed Rs 450."}
+  ],
+  "food_personality": {
+    "name": "Dinner Decider",
+    "detail": "Your Swiggy usage is mostly evening decision support.",
+    "experimentation_score": 73,
+    "unique_restaurants": 11
+  },
+  "pattern_tags": [
+    {"name": "protein-oriented", "count": 11},
+    {"name": "rice-heavy", "count": 7},
+    {"name": "drink", "count": 3},
+    {"name": "dessert", "count": 3},
+    {"name": "fast-food", "count": 2}
+  ],
+  "data_quality": {
+    "status": "strong",
+    "score": 90,
+    "confidence_label": "Strong signal",
+    "summary": "Strong confidence based on 15 orders over 27 observed days."
+  },
+  "prioritized_insights": [
+    {"label": "Budget", "title": "Keep this month under control", "detail": "Projected spend is Rs 5,631 against a Rs 6,000 budget.", "impact": "94% budget pace", "confidence": "Strong signal", "score": 96},
+    {"label": "Fees", "title": "Reduce invisible delivery leakage", "detail": "Delivery fees account for Rs 513 in this period.", "impact": "Immediate savings lever", "confidence": "Strong signal", "score": 90},
+    {"label": "Timing", "title": "Plan around your strongest ordering window", "detail": "Your peak pattern is Dinner around 20:00.", "impact": "Better pre-order decisions", "confidence": "Strong signal", "score": 82},
+    {"label": "Membership", "title": "Swiggy One may be worth checking", "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.", "impact": "Could reduce fee pressure", "confidence": "Strong signal", "score": 78},
+    {"label": "Goal", "title": "Use one weekly cap instead of daily guilt", "detail": "This week's suggested cap is Rs 1,500.", "impact": "Simple behavior change", "confidence": "Strong signal", "score": 76}
+  ],
+  "next_best_actions": [
+    {"title": "Set this week's Swiggy cap", "detail": "Use Rs 1,500 as the limit before placing more orders.", "impact": "Budget control", "confidence": "Strong signal"},
+    {"title": "Check Swiggy One before subscribing", "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing.", "impact": "Fee savings check", "confidence": "Strong signal"},
+    {"title": "Put a pause before peak-hour orders", "detail": "Show the budget nudge before 20:00, your strongest ordering slot.", "impact": "Impulse reduction", "confidence": "Strong signal"},
+    {"title": "Compare repeat alternatives", "detail": "When Meghana Foods appears, compare it with two cheaper similar options.", "impact": "Repeat spend optimization", "confidence": "Strong signal"}
+  ],
+  "subscription_value": {
+    "title": "Swiggy One may be worth checking",
+    "detail": "You paid Rs 513 in delivery fees this period. If you order often, compare that against Swiggy One's fee savings before subscribing."
+  },
+  "nutrition_confidence": {
+    "status": "estimated",
+    "score": 45,
+    "summary": "Macro split is useful for pattern awareness, but it is estimated from dish names."
+  },
+  "agent_summary": [
+    "Projected monthly spend is Rs 5,631 against a Rs 6,000 budget.",
+    "Projected spend uses 94% of the monthly budget.",
+    "Delivery fees account for Rs 513.",
+    "Top priority: Keep this month under control.",
+    "Next best action: Set this week's Swiggy cap.",
+    "Analysis confidence: Strong signal."
+  ],
+  "agent_recommendations": [
+    "Create a one-tap 'Biryani' shortlist with premium, budget, and lighter picks.",
+    "Prefer nearby restaurants or batch snack/cafe cravings when delivery fee impact is high.",
+    "Compare recent delivery fees against Swiggy One savings before subscribing.",
+    "Show a dessert/drink nudge only after the user confirms they want add-ons.",
+    "Use Rs 1,500 as this week's ordering cap."
+  ]
+}
+    </script>
+    <script>
+      window.FOODLENS_SAMPLE_DATA = JSON.parse(document.getElementById("sampleAnalysisData").textContent);
+    </script>
+    <script src="static/script.js"></script>
+  </body>
+</html>

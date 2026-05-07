@@ -10,7 +10,13 @@ This is a sample version built with mocked order-history data. It is intended to
 
 ## Sample analysis output
 
-Reviewers can inspect a readable sample analysis without running the project:
+Reviewers can inspect a static HTML sample that looks like the loaded local app without running the backend:
+
+```text
+sample_analysis.html
+```
+
+A readable Markdown version is also available:
 
 ```text
 sample_analysis.md
@@ -28,7 +34,7 @@ The JSON file is generated from the same local API response used by the dashboar
 GET http://127.0.0.1:8000/api/analysis?period=30&budget=6000
 ```
 
-The Markdown file presents the same analysis in a reviewer-friendly format. The JSON file includes the complete localhost analysis output: metrics, chart data, budget analysis, hidden costs, savings opportunities, badges, agent output, workflow trace, and prompt grounding.
+The HTML file uses the same dashboard layout and CSS as the app with embedded sample data. The Markdown file presents the same analysis in a reviewer-friendly document format. The JSON file includes the complete localhost analysis output: metrics, chart data, budget analysis, hidden costs, savings opportunities, badges, agent output, workflow trace, and prompt grounding.
 
 Key sections to review:
 
