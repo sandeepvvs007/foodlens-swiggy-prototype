@@ -87,11 +87,13 @@ def _empty_response(period_days: int | None, monthly_budget: int) -> dict:
         "hourly_breakdown": [],
         "weekday_breakdown": [],
         "budget_insights": [],
+        "at_a_glance": [],
         "budget_burn": {},
         "hidden_costs": [],
         "habit_triggers": [],
         "weekly_goal": {},
         "savings_opportunities": [],
+        "personal_badges": [],
         "food_personality": {},
         "pattern_tags": [],
         "insights": ["No order history was found for this period."],
@@ -342,6 +344,77 @@ def analyze_orders(
         "unique_restaurants": unique_restaurant_count,
     }
 
+    at_a_glance = [
+        {
+            "label": "Projected",
+            "value": f"Rs {projected_monthly_spend:,}",
+            "hint": f"{budget_used_percent}% of budget",
+        },
+        {
+            "label": "Fees paid",
+            "value": f"Rs {delivery_fee_total:,}",
+            "hint": "delivery leakage",
+        },
+        {
+            "label": "Peak time",
+            "value": peak_hour[0],
+            "hint": peak_time[0],
+        },
+        {
+            "label": "Weekly goal",
+            "value": f"Rs {weekly_budget_goal:,}",
+            "hint": f"{target_order_count} planned orders",
+        },
+        {
+            "label": "Top repeat",
+            "value": top_dish[0],
+            "hint": f"{top_dish[1]}x ordered",
+        },
+        {
+            "label": "Personality",
+            "value": personality_name,
+            "hint": f"{experimentation_score}% explore score",
+        },
+    ]
+
+    raw_badges = [
+        {
+            "name": personality_name,
+            "reason": personality_detail,
+        }
+    ]
+    if delivery_fee_total >= 500:
+        raw_badges.append({
+            "name": "Fee Watcher",
+            "reason": f"Rs {delivery_fee_total:,} paid in delivery fees this period.",
+        })
+    if dinner_or_late / order_count >= 0.65:
+        raw_badges.append({
+            "name": "Dinner Decider",
+            "reason": f"{round(dinner_or_late / order_count * 100)}% of orders happen around dinner or late night.",
+        })
+    if top_cuisine[1] >= max(3, order_count // 4):
+        raw_badges.append({
+            "name": f"{top_cuisine[0]} Loyalist",
+            "reason": f"{top_cuisine[0]} is your strongest cuisine pattern.",
+        })
+    if add_on_spend >= 300:
+        raw_badges.append({
+            "name": "Add-on Drifter",
+            "reason": f"Estimated Rs {add_on_spend:,} linked to dessert or drink add-ons.",
+        })
+    if high_spend_orders >= 2:
+        raw_badges.append({
+            "name": "Premium Picker",
+            "reason": f"{high_spend_orders} orders crossed Rs 450.",
+        })
+    personal_badges = []
+    seen_badges = set()
+    for badge in raw_badges:
+        if badge["name"] not in seen_badges:
+            personal_badges.append(badge)
+            seen_badges.add(badge["name"])
+
     recommendations = []
     if top_cuisine[1] >= max(3, order_count // 4):
         recommendations.append(
@@ -399,6 +472,7 @@ def analyze_orders(
             ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         ),
         "budget_insights": budget_insights,
+        "at_a_glance": at_a_glance,
         "budget_burn": {
             "status": burn_status,
             "budget_used_percent": budget_used_percent,
@@ -415,6 +489,7 @@ def analyze_orders(
         "habit_triggers": habit_triggers,
         "weekly_goal": weekly_goal,
         "savings_opportunities": savings_opportunities,
+        "personal_badges": personal_badges[:5],
         "food_personality": food_personality,
         "pattern_tags": _top(tag_counter, 6),
         "insights": insights,

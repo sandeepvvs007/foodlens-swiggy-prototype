@@ -71,6 +71,41 @@ function renderSavings(selector, items) {
     .join("");
 }
 
+function renderAtAGlance(items, swiggyOneSuggestion) {
+  document.querySelector("#atAGlance").innerHTML = items
+    .map((item) => `
+      <div class="glance-card">
+        <span>${item.label}</span>
+        <strong>${item.value}</strong>
+        <em>${item.hint}</em>
+      </div>
+    `)
+    .join("");
+
+  const actions = [
+    "Set weekly cap",
+    "Compare repeat alternatives",
+    "Avoid unplanned add-ons",
+  ];
+  if (swiggyOneSuggestion) {
+    actions.unshift("Check Swiggy One savings");
+  }
+  document.querySelector("#quickActions").innerHTML = actions
+    .map((action) => `<span>${action}</span>`)
+    .join("");
+}
+
+function renderPersonalBadges(badges) {
+  document.querySelector("#personalBadges").innerHTML = badges
+    .map((badge) => `
+      <div class="personal-badge">
+        <strong>${badge.name}</strong>
+        <p>${badge.reason}</p>
+      </div>
+    `)
+    .join("");
+}
+
 function renderBudgetBurn(burn) {
   const percent = Math.min(burn.budget_used_percent || 0, 100);
   document.querySelector("#budgetBurn").innerHTML = `
@@ -260,11 +295,13 @@ async function loadAnalysis() {
   const response = await fetch(`/api/analysis?period=${period}&budget=${budget}`);
   const data = await response.json();
   currentAnalysis = data;
+  renderAtAGlance(data.at_a_glance || [], data.swiggy_one_suggestion);
   renderMetrics(data.metrics);
   renderInsightCards("#budgetInsights", data.budget_insights);
   renderBudgetBurn(data.budget_burn || {});
   renderWeeklyGoal(data.weekly_goal || {});
   renderHiddenCosts(data.hidden_costs || [], data.swiggy_one_suggestion);
+  renderPersonalBadges(data.personal_badges || []);
   renderFoodPersonality(data.food_personality, data.pattern_tags);
   renderList("#insights", data.agent_summary || data.insights);
   renderList("#recommendations", data.agent_recommendations || data.recommendations);
