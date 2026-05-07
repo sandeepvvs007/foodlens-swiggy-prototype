@@ -15,25 +15,30 @@ GROUNDING_PROMPT = """
 Extract a compact factual grounding pack from the analytics payload.
 Include only verifiable facts: period, spend, projection, top dish, top restaurant,
 top cuisine, timing peak, weekday peak, budget status, delivery fee leakage,
-repeat concentration, and pattern tags.
+repeat concentration, budget burn rate, hidden costs, estimated nutrition,
+weekly goal, personal badges, Swiggy One savings prompt, and pattern tags.
 """
 
 SPEND_ANALYST_PROMPT = """
 Analyze the user's food spending.
 Prioritize projected monthly spend, delivery-fee leakage, high-value orders,
+budget burn rate, hidden costs, Swiggy One savings prompt when applicable,
 and realistic savings actions. Do not shame the user.
 """
 
 HABIT_ANALYST_PROMPT = """
 Analyze behavioral patterns from ordering history.
 Look for timing triggers, repeat behavior, cuisine/dish concentration,
-late-night/dinner-heavy decisions, and experimentation level.
+late-night/dinner-heavy decisions, personal badges, weekly goal behavior,
+and experimentation level.
 """
 
 RECOMMENDATION_PROMPT = """
 Generate next-best actions for the user.
 Each recommendation must map to one of the grounded facts and should be useful
-even if the user does not order every day.
+even if the user does not order every day. Prefer concrete actions around
+weekly budget, delivery-fee checks, repeat alternatives, add-on control,
+and next-order guardrails.
 """
 
 GUARDRAIL_PROMPT = """

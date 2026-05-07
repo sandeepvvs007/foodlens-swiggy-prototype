@@ -23,6 +23,9 @@ class FoodLensState(TypedDict, total=False):
     grounding: dict[str, Any]
     spend_findings: list[str]
     habit_findings: list[str]
+    burn_findings: list[str]
+    hidden_cost_findings: list[str]
+    goal_findings: list[str]
     risk_findings: list[str]
     agent_summary: list[str]
     agent_recommendations: list[str]
@@ -76,6 +79,13 @@ def ground_context(state: FoodLensState) -> FoodLensState:
             )
         ),
         "food_personality": analysis.get("food_personality", {}).get("name", "Unknown"),
+        "budget_burn": analysis.get("budget_burn", {}),
+        "hidden_costs": analysis.get("hidden_costs", []),
+        "weekly_goal": analysis.get("weekly_goal", {}),
+        "swiggy_one_suggestion": analysis.get("swiggy_one_suggestion"),
+        "personal_badges": analysis.get("personal_badges", []),
+        "at_a_glance": analysis.get("at_a_glance", []),
+        "macro_breakdown": analysis.get("macro_breakdown", []),
         "pattern_tags": [item["name"] for item in analysis.get("pattern_tags", [])],
     }
     return {
@@ -114,6 +124,40 @@ def spend_analysis(state: FoodLensState) -> FoodLensState:
     }
 
 
+def budget_burn_analysis(state: FoodLensState) -> FoodLensState:
+    burn = state["grounding"].get("budget_burn", {})
+    findings = [
+        f"Budget burn status is {burn.get('status', 'unknown')}.",
+        f"Projected spend uses {burn.get('budget_used_percent', 0)}% of the monthly budget.",
+        burn.get("detail", "Budget burn detail is unavailable."),
+    ]
+    return {
+        **state,
+        "burn_findings": findings,
+        "workflow_trace": _trace(state, "budget_burn_analysis", "grounded budget burn rate"),
+    }
+
+
+def hidden_cost_analysis(state: FoodLensState) -> FoodLensState:
+    costs = state["grounding"].get("hidden_costs", [])
+    fee_cost = next((item for item in costs if item.get("name") == "Delivery fees"), {})
+    add_on_cost = next((item for item in costs if item.get("name") == "Dessert/drink add-ons"), {})
+    high_order_cost = next((item for item in costs if item.get("name") == "Rs 450+ orders"), {})
+    findings = [
+        f"Delivery fees account for Rs {fee_cost.get('amount', 0):,}.",
+        f"Dessert/drink add-ons are estimated at Rs {add_on_cost.get('amount', 0):,}.",
+        f"Rs 450+ orders account for Rs {high_order_cost.get('amount', 0):,}.",
+    ]
+    suggestion = state["grounding"].get("swiggy_one_suggestion")
+    if suggestion:
+        findings.append(suggestion.get("detail", "Swiggy One savings check is applicable."))
+    return {
+        **state,
+        "hidden_cost_findings": findings,
+        "workflow_trace": _trace(state, "hidden_cost_analysis", "mapped hidden costs"),
+    }
+
+
 def habit_analysis(state: FoodLensState) -> FoodLensState:
     grounding = state["grounding"]
     findings = [
@@ -124,10 +168,27 @@ def habit_analysis(state: FoodLensState) -> FoodLensState:
     ]
     if grounding["pattern_tags"]:
         findings.append(f"Pattern tags: {', '.join(grounding['pattern_tags'][:4])}.")
+    badges = [badge.get("name", "") for badge in grounding.get("personal_badges", [])]
+    if badges:
+        findings.append(f"Personal badges: {', '.join(badges[:5])}.")
     return {
         **state,
         "habit_findings": findings,
         "workflow_trace": _trace(state, "habit_analysis", "identified behavior patterns"),
+    }
+
+
+def goal_analysis(state: FoodLensState) -> FoodLensState:
+    goal = state["grounding"].get("weekly_goal", {})
+    findings = [
+        f"Weekly budget goal is Rs {goal.get('budget', 0):,}.",
+        f"Current weekly pace is Rs {goal.get('current_pace', 0):,}.",
+    ]
+    findings.extend(goal.get("actions", [])[:4])
+    return {
+        **state,
+        "goal_findings": findings,
+        "workflow_trace": _trace(state, "goal_analysis", "prepared weekly goal"),
     }
 
 
@@ -142,6 +203,10 @@ def risk_detection(state: FoodLensState) -> FoodLensState:
         risks.append("Impulse ordering window")
     if "dessert" in grounding["pattern_tags"] or "drink" in grounding["pattern_tags"]:
         risks.append("Add-on spend risk")
+    if grounding.get("budget_burn", {}).get("status") == "over pace":
+        risks.append("Budget burn risk")
+    if grounding.get("swiggy_one_suggestion"):
+        risks.append("Membership savings check")
     if not risks:
         risks.append("No major risk detected for this period")
     return {
@@ -164,8 +229,13 @@ def recommendation_drafter(state: FoodLensState) -> FoodLensState:
     )
     if "Delivery fee leakage" in risks:
         recommendations.append("Prefer nearby restaurants or batch snack/cafe cravings when delivery fee impact is high.")
+    if "Membership savings check" in risks:
+        recommendations.append("Compare recent delivery fees against Swiggy One savings before subscribing.")
     if "Add-on spend risk" in risks:
         recommendations.append("Show a dessert/drink nudge only after the user confirms they want add-ons.")
+    weekly_goal = grounding.get("weekly_goal", {})
+    if weekly_goal:
+        recommendations.append(f"Use Rs {weekly_goal.get('budget', 0):,} as this week's ordering cap.")
     recommendations.append(
         f"For repeat behavior, compare {grounding['top_restaurant']} against two cheaper similar options."
     )
@@ -180,7 +250,10 @@ def guardrail_review(state: FoodLensState) -> FoodLensState:
     blocked_terms = ["diagnose", "cure", "guaranteed weight", "must order", "auto order"]
     generated_text = " ".join(
         state.get("spend_findings", [])
+        + state.get("burn_findings", [])
+        + state.get("hidden_cost_findings", [])
         + state.get("habit_findings", [])
+        + state.get("goal_findings", [])
         + state.get("agent_recommendations", [])
     ).lower()
     blocked = [term for term in blocked_terms if term in generated_text]
@@ -204,9 +277,11 @@ def guardrail_review(state: FoodLensState) -> FoodLensState:
 def final_response(state: FoodLensState) -> FoodLensState:
     summary = [
         state["spend_findings"][0],
+        state["burn_findings"][1],
+        state["hidden_cost_findings"][0],
         state["habit_findings"][0],
         f"Main risks: {', '.join(state['risk_findings'])}.",
-        state["habit_findings"][3],
+        state["goal_findings"][0],
     ]
     return {
         **state,
@@ -219,7 +294,10 @@ def build_foodlens_graph():
     graph = StateGraph(FoodLensState)
     graph.add_node("ground_context", ground_context)
     graph.add_node("spend_analysis", spend_analysis)
+    graph.add_node("budget_burn_analysis", budget_burn_analysis)
+    graph.add_node("hidden_cost_analysis", hidden_cost_analysis)
     graph.add_node("habit_analysis", habit_analysis)
+    graph.add_node("goal_analysis", goal_analysis)
     graph.add_node("risk_detection", risk_detection)
     graph.add_node("recommendation_drafter", recommendation_drafter)
     graph.add_node("guardrail_review", guardrail_review)
@@ -227,8 +305,11 @@ def build_foodlens_graph():
 
     graph.add_edge(START, "ground_context")
     graph.add_edge("ground_context", "spend_analysis")
-    graph.add_edge("spend_analysis", "habit_analysis")
-    graph.add_edge("habit_analysis", "risk_detection")
+    graph.add_edge("spend_analysis", "budget_burn_analysis")
+    graph.add_edge("budget_burn_analysis", "hidden_cost_analysis")
+    graph.add_edge("hidden_cost_analysis", "habit_analysis")
+    graph.add_edge("habit_analysis", "goal_analysis")
+    graph.add_edge("goal_analysis", "risk_detection")
     graph.add_edge("risk_detection", "recommendation_drafter")
     graph.add_edge("recommendation_drafter", "guardrail_review")
     graph.add_edge("guardrail_review", "final_response")
