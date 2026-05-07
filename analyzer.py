@@ -45,6 +45,35 @@ def _classify_items(items: list[str]) -> set[str]:
     return tags
 
 
+def _estimate_item_macros(item: str) -> dict[str, int]:
+    text = item.lower()
+    if "biryani" in text:
+        return {"Protein": 25, "Carbs": 78, "Fats": 24}
+    if "raita" in text:
+        return {"Protein": 4, "Carbs": 6, "Fats": 4}
+    if "meal" in text:
+        return {"Protein": 20, "Carbs": 82, "Fats": 18}
+    if "coffee" in text or "latte" in text:
+        return {"Protein": 4, "Carbs": 18, "Fats": 6}
+    if "muffin" in text:
+        return {"Protein": 5, "Carbs": 48, "Fats": 18}
+    if "kebab" in text or "wrap" in text:
+        return {"Protein": 27, "Carbs": 48, "Fats": 22}
+    if "burger" in text:
+        return {"Protein": 28, "Carbs": 45, "Fats": 28}
+    if "fries" in text:
+        return {"Protein": 5, "Carbs": 48, "Fats": 22}
+    if "ice cream" in text or "chocolate" in text:
+        return {"Protein": 5, "Carbs": 38, "Fats": 16}
+    if "rice bowl" in text:
+        return {"Protein": 24, "Carbs": 68, "Fats": 18}
+    if "protein" in text or "paneer" in text:
+        return {"Protein": 34, "Carbs": 52, "Fats": 22}
+    if "coke" in text or "soda" in text:
+        return {"Protein": 0, "Carbs": 35, "Fats": 0}
+    return {"Protein": 12, "Carbs": 45, "Fats": 14}
+
+
 def _empty_response(period_days: int | None, monthly_budget: int) -> dict:
     return {
         "period": {"label": _period_label(period_days), "days": period_days},
@@ -53,6 +82,7 @@ def _empty_response(period_days: int | None, monthly_budget: int) -> dict:
         "top_dishes": [],
         "top_restaurants": [],
         "top_cuisines": [],
+        "macro_breakdown": [],
         "time_buckets": [],
         "hourly_breakdown": [],
         "weekday_breakdown": [],
@@ -108,6 +138,7 @@ def analyze_orders(
     hourly_counter: Counter = Counter()
     weekday_counter: Counter = Counter()
     tag_counter: Counter = Counter()
+    macro_totals: defaultdict[str, int] = defaultdict(int)
     restaurant_spend: defaultdict[str, int] = defaultdict(int)
     high_spend_orders = 0
     small_orders = 0
@@ -115,6 +146,8 @@ def analyze_orders(
     for order in enriched:
         for item in order["items"]:
             dish_counter[item] += 1
+            for macro, grams in _estimate_item_macros(item).items():
+                macro_totals[macro] += grams
         for tag in _classify_items(order["items"]):
             tag_counter[tag] += 1
         restaurant_counter[order["restaurant"]] += 1
@@ -287,6 +320,10 @@ def analyze_orders(
         "top_dishes": _top(dish_counter),
         "top_restaurants": _top(restaurant_counter),
         "top_cuisines": _top(cuisine_counter),
+        "macro_breakdown": [
+            {"name": macro, "count": macro_totals[macro], "unit": "g"}
+            for macro in ["Protein", "Carbs", "Fats"]
+        ],
         "time_buckets": _top(time_counter, 6),
         "hourly_breakdown": _ordered_counts(
             hourly_counter,

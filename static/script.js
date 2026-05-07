@@ -126,24 +126,29 @@ function renderPieChart(selector, items) {
   const legend = items
     .map((item, index) => {
       const percent = Math.round((item.count / total) * 100);
+      const value = item.unit ? `${item.count}${item.unit}` : `${item.count}x`;
       return `
         <div class="legend-row">
           <span style="background: ${chartColors[index % chartColors.length]}"></span>
           <strong>${item.name}</strong>
-          <em>${item.count}x · ${percent}%</em>
+          <em>${value} · ${percent}%</em>
         </div>
       `;
     })
     .join("");
+  const hasMacroUnit = items.some((item) => item.unit);
 
   document.querySelector(selector).innerHTML = `
     <div class="donut-chart" style="background: conic-gradient(${segments.join(", ")})">
       <div>
         <strong>${total}</strong>
-        <span>orders</span>
+        <span>${hasMacroUnit ? "est. grams" : "orders"}</span>
       </div>
     </div>
-    <div class="pie-legend">${legend}</div>
+    <div>
+      <div class="pie-legend">${legend}</div>
+      ${hasMacroUnit ? `<p class="chart-note">Macro split is estimated from dish names and should not be treated as verified nutrition data.</p>` : ""}
+    </div>
   `;
 }
 

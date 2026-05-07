@@ -442,6 +442,13 @@ input {
   color: var(--muted);
 }
 
+.chart-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 12px;
+}
+
 .rank-row {
   align-items: center;
   border-top: 1px solid #eef1f6;
