@@ -78,3 +78,5 @@ agent/
 ```
 
 Each node owns its implementation and prompt. The graph treats deterministic analytics as the source of truth and runs guardrail checks for unsupported medical claims, invented metrics, hidden cart/order actions, and ungrounded recommendations.
+
+`agent/contracts.py` connects the prompt contracts to runtime behavior. Each node validates its returned object against the `output_contract.required_keys` in its `prompt.yaml`; future LLM calls can use the same contract layer to parse and validate JSON before updating graph state.

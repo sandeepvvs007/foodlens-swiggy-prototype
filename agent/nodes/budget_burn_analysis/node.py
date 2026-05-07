@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from agent.contracts import merge_contract_output
 from agent.state import FoodLensState
-from agent.utils import trace
 
 
 def budget_burn_analysis(state: FoodLensState) -> FoodLensState:
@@ -11,8 +11,9 @@ def budget_burn_analysis(state: FoodLensState) -> FoodLensState:
         f"Projected spend uses {burn.get('budget_used_percent', 0)}% of the monthly budget.",
         burn.get("detail", "Budget burn detail is unavailable."),
     ]
-    return {
-        **state,
-        "burn_findings": findings,
-        "workflow_trace": trace(state, "budget_burn_analysis", "grounded budget burn rate"),
-    }
+    return merge_contract_output(
+        state,
+        "budget_burn_analysis",
+        "grounded budget burn rate",
+        {"burn_findings": findings},
+    )

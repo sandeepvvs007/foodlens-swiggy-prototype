@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from agent.contracts import merge_contract_output
 from agent.state import FoodLensState
-from agent.utils import trace
 
 
 def recommendation_drafter(state: FoodLensState) -> FoodLensState:
@@ -27,8 +27,9 @@ def recommendation_drafter(state: FoodLensState) -> FoodLensState:
     recommendations.append(
         f"For repeat behavior, compare {grounding['top_restaurant']} against two cheaper similar options."
     )
-    return {
-        **state,
-        "agent_recommendations": recommendations[:5],
-        "workflow_trace": trace(state, "recommendation_drafter", "drafted grounded actions"),
-    }
+    return merge_contract_output(
+        state,
+        "recommendation_drafter",
+        "drafted grounded actions",
+        {"agent_recommendations": recommendations[:5]},
+    )

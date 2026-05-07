@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from agent.contracts import merge_contract_output
 from agent.state import FoodLensState
-from agent.utils import trace
 
 
 def risk_detection(state: FoodLensState) -> FoodLensState:
@@ -21,8 +21,9 @@ def risk_detection(state: FoodLensState) -> FoodLensState:
         risks.append("Membership savings check")
     if not risks:
         risks.append("No major risk detected for this period")
-    return {
-        **state,
-        "risk_findings": risks,
-        "workflow_trace": trace(state, "risk_detection", "screened risk categories"),
-    }
+    return merge_contract_output(
+        state,
+        "risk_detection",
+        "screened risk categories",
+        {"risk_findings": risks},
+    )

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from agent.contracts import merge_contract_output
 from agent.state import FoodLensState
-from agent.utils import trace
 
 
 def guardrail_review(state: FoodLensState) -> FoodLensState:
@@ -15,18 +15,21 @@ def guardrail_review(state: FoodLensState) -> FoodLensState:
         + state.get("agent_recommendations", [])
     ).lower()
     blocked = [term for term in blocked_terms if term in generated_text]
-    return {
-        **state,
-        "guardrails": {
-            "status": "passed" if not blocked else "blocked",
-            "blocked_terms": blocked,
-            "checks": [
-                "No medical claims",
-                "No invented metrics",
-                "No hidden cart/order actions",
-                "Recommendations grounded in analytics payload",
-                "User consent required for MCP data access",
-            ],
+    return merge_contract_output(
+        state,
+        "guardrail_review",
+        "validated output safety",
+        {
+            "guardrails": {
+                "status": "passed" if not blocked else "blocked",
+                "blocked_terms": blocked,
+                "checks": [
+                    "No medical claims",
+                    "No invented metrics",
+                    "No hidden cart/order actions",
+                    "Recommendations grounded in analytics payload",
+                    "User consent required for MCP data access",
+                ],
+            }
         },
-        "workflow_trace": trace(state, "guardrail_review", "validated output safety"),
-    }
+    )

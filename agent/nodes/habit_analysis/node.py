@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from agent.contracts import merge_contract_output
 from agent.state import FoodLensState
-from agent.utils import trace
 
 
 def habit_analysis(state: FoodLensState) -> FoodLensState:
@@ -17,8 +17,9 @@ def habit_analysis(state: FoodLensState) -> FoodLensState:
     badges = [badge.get("name", "") for badge in grounding.get("personal_badges", [])]
     if badges:
         findings.append(f"Personal badges: {', '.join(badges[:5])}.")
-    return {
-        **state,
-        "habit_findings": findings,
-        "workflow_trace": trace(state, "habit_analysis", "identified behavior patterns"),
-    }
+    return merge_contract_output(
+        state,
+        "habit_analysis",
+        "identified behavior patterns",
+        {"habit_findings": findings},
+    )

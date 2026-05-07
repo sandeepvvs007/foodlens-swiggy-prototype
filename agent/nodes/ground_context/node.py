@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from agent.contracts import validate_output_contract
 from agent.prompt_loader import load_all_prompts
 from agent.state import FoodLensState
 from agent.utils import first, metric, trace
@@ -7,6 +8,7 @@ from agent.utils import first, metric, trace
 
 def ground_context(state: FoodLensState) -> FoodLensState:
     analysis = state["analysis"]
+    prompts = load_all_prompts()
     grounding = {
         "period": analysis.get("period", {}).get("label", "Selected period"),
         "monthly_budget": analysis.get("budget", {}).get("monthly_budget", 0),
@@ -44,9 +46,10 @@ def ground_context(state: FoodLensState) -> FoodLensState:
         "macro_breakdown": analysis.get("macro_breakdown", []),
         "pattern_tags": [item["name"] for item in analysis.get("pattern_tags", [])],
     }
+    validate_output_contract("ground_context", prompts, grounding)
     return {
         **state,
-        "prompts": load_all_prompts(),
+        "prompts": prompts,
         "grounding": grounding,
         "workflow_trace": trace(state, "ground_context", "grounded analytics payload"),
     }

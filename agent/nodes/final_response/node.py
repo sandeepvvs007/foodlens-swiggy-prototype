@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from agent.contracts import merge_contract_output
 from agent.state import FoodLensState
-from agent.utils import trace
 
 
 def final_response(state: FoodLensState) -> FoodLensState:
@@ -13,8 +13,9 @@ def final_response(state: FoodLensState) -> FoodLensState:
         f"Main risks: {', '.join(state['risk_findings'])}.",
         state["goal_findings"][0],
     ]
-    return {
-        **state,
-        "agent_summary": summary,
-        "workflow_trace": trace(state, "final_response", "assembled final agent output"),
-    }
+    return merge_contract_output(
+        state,
+        "final_response",
+        "assembled final agent output",
+        {"agent_summary": summary},
+    )
