@@ -10,19 +10,25 @@ This is a sample version built with mocked order-history data. It is intended to
 
 ## Sample analysis output
 
-Reviewers can inspect the full analysis payload without running the project:
+Reviewers can inspect a readable sample analysis without running the project:
+
+```text
+sample_analysis.md
+```
+
+For technical review, the full raw API payload is also available:
 
 ```text
 sample_analysis.json
 ```
 
-This file is generated from the same local API response used by the dashboard:
+The JSON file is generated from the same local API response used by the dashboard:
 
 ```text
 GET http://127.0.0.1:8000/api/analysis?period=30&budget=6000
 ```
 
-It includes the complete localhost analysis output: metrics, chart data, budget analysis, hidden costs, savings opportunities, badges, agent output, workflow trace, and prompt grounding.
+The Markdown file presents the same analysis in a reviewer-friendly format. The JSON file includes the complete localhost analysis output: metrics, chart data, budget analysis, hidden costs, savings opportunities, badges, agent output, workflow trace, and prompt grounding.
 
 Key sections to review:
 
@@ -37,32 +43,15 @@ Key sections to review:
 - `workflow_trace`: the executed LangGraph node sequence.
 - `prompt_grounding`: loaded node prompts and the grounded analytics pack used by the agent.
 
-Example excerpt:
+Short preview:
 
-```json
-{
-  "metrics": {
-    "order_count": 15,
-    "total_spend": 5631,
-    "projected_monthly_spend": 5631,
-    "delivery_fee_total": 513,
-    "orders_per_week": 3.9
-  },
-  "data_quality": {
-    "status": "strong",
-    "score": 90,
-    "confidence_label": "Strong signal"
-  },
-  "next_best_actions": [
-    {
-      "title": "Set this week's Swiggy cap",
-      "detail": "Use Rs 1,500 as the limit before placing more orders.",
-      "impact": "Budget control",
-      "confidence": "Strong signal"
-    }
-  ]
-}
-```
+| Section | Sample output |
+| --- | --- |
+| Projected spend | Rs 5,631, 94% of budget |
+| Top action | Set this week's Swiggy cap at Rs 1,500 |
+| Fee signal | Rs 513 paid in delivery fees |
+| Peak behavior | Dinner ordering around 20:00 |
+| Confidence | Strong signal, 90/100 |
 
 ## Run locally
 
